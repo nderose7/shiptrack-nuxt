@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  body {
+    font-family: 'Urbanist', sans-serif;
+    color: #2b2d32;
+    @apply bg-slate-100
+  }
+  p {
+    @apply mb-4 text-lg
+  }
+  p a, a.link, .api-post ul a {
+    @apply text-blue-500
+  }
+  .dark p a, .dark a.link, .api-post ul a {
+    color: #4285F4;
+  }
+  img {
+    max-width: 100%;
+  }
+  button.link {
+    @apply text-blue-500;
+  }
+  .dark button.link  {
+    color: #4285F4;
+  }
+  .lead {
+    @apply min-[1281px]:text-xl text-lg
+  }
+  .btn-primary {
+    @apply px-5 py-2 text-lg text-white font-bold bg-blue-500 hover:bg-blue-600 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75;
+  }
+  button:disabled,
+  button[disabled] {
+    @apply opacity-50 bg-midnight-800
+  }
+  .btn-gray {
+    @apply rounded-full  dark:text-white bg-slate-100 border border-slate-200 dark:border-midnight-100 px-6 py-3 text-center text-lg font-bold text-blue-500 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:bg-midnight-700 dark:hover:bg-midnight-900 dark:focus:ring-gray-800
+  }
+  .btn-white {
+    @apply rounded-full dark:text-blue-400 bg-white border border-slate-200 dark:border-midnight-100 px-6 py-3 text-center text-lg font-bold text-blue-500 hover:bg-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-300 dark:bg-midnight-700 dark:hover:bg-midnight-900 dark:focus:ring-gray-800
+  }
+  .btn-sm {
+    @apply px-3 py-1
+  }
+  .btn-danger {
+    @apply bg-red-600 text-white px-6 py-3 rounded-md font-bold
+  }
+  .btn-lg {
+    @apply btn-primary relative mt-4 mb-2 block py-4 px-6 text-left text-xl lg:pl-8 lg:text-2xl
+  }
+  .content-label {
+    @apply mb-1 font-bold text-slate-500 dark:text-slate-400;
+  }
+  .tile {
+    @apply block h-full rounded-2xl border border-gray-200 bg-white p-5 text-left hover:border-blue-600  dark:border-gray-800 dark:bg-midnight-900 lg:p-10 lg:pt-8 lg:pb-5 relative dark:hover:border-blue-600;
+  }
+  .tile-no-hover {
+    @apply block h-full rounded-2xl border border-gray-200 bg-white p-5 pb-10 text-left  dark:border-gray-800 dark:bg-midnight-900 lg:p-10 lg:pt-8 lg:pb-8 relative ;
+  }
+  form label {
+    @apply block font-bold mb-1;
+  }
+  form .checkbox label {
+    @apply cursor-pointer;
+  }
+  .form-control
+    input[type=text], .form-control input[type=email], .form-control input[type=password], .form-control input[type=phone], .form-control textarea, .form-control select, .form-control input[type=number] {
+    @apply dark:bg-midnight-900 bg-white border border-slate-300 dark:border-slate-800 w-full dark:text-gray-200 mb-3 pl-2 pr-6 py-2 rounded-md;
+  }
+  .form-control select {
+    @apply pr-14 py-2 rounded-md pl-4;
+    background-image: url('../icons/caret.svg');
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: calc(100% - 12px);
+    background-size: 16px;
+  }
+  .form-control input.showoff, .form-control textarea.showoff {
+    @apply border-blue-500
+  }
+  h1 {
+    @apply text-5xl font-bold
+  }
+  h2 {
+    @apply text-4xl font-bold
+  }
+  h3 {
+    @apply text-3xl font-bold
+  }
+  h4 {
+    @apply text-2xl font-bold
+  }
+  h5 {
+    @apply text-xl font-bold
+  }
+  ul li {
+    @apply my-1
+  }
+  ul.extra-space li {
+    @apply my-2
+  }
+  ul.no-space li {
+    @apply my-0
+  }
+  img {
+    max-width: 100%;
+  }
+  .asset-tile {
+    @apply dark:bg-midnight-900 rounded-xl py-3 px-5 border border-slate-300 bg-white dark:border-midnight-100
+  }
+  .active {
+    @apply border-blue-500 dark:border-blue-400;
+  }
+  .icon-style {
+    @apply relative top-[-2px]
+  }
+  .hljs {
+    @apply p-5 rounded-lg mb-6 border dark:border-midnight-100 mt-4 overflow-scroll 
+  }
+  .light .hljs {
+    @apply bg-slate-100
+  }
+  .light .article .hljs {
+    @apply bg-white
+  }
+  .dark .hljs {
+    @apply bg-midnight-700
+  }
+  .dark .toast-style { 
+    background: #212326 !important; 
+    @apply text-slate-200 border border-slate-200
+  }
+  .toast-style { 
+    background: #cbd5e1;
+  }
+  .dark .swal2-icon.swal2-success [class^=swal2-success-line] { 
+    background-color: #6585e4 !important 
+  }
+  .dark .swal2-icon.swal2-success .swal2-success-ring { 
+    border-color: #6585e4 !important 
+  }
+  .dark .swal2-timer-progress-bar {
+    @apply bg-midnight-90
+  }
+  .strategy-tile {
+    @apply rounded-lg p-5 bg-white dark:bg-midnight-900 border dark:border-midnight-100
+  }
+  .membership-notice {
+    @apply mt-5 text-2xl rounded-lg p-3 px-5 w-fit bg-slate-100 dark:bg-midnight-100 border-blue-500 border
+  }
+
+  .api-post h2:first-child, .api-post h3:first-child {
+    @apply mt-0
+  }
+  
+  .api-post h3, .api-post h2 {
+    @apply mt-10 mb-4 pt-4
+  }
+  .api-post h4, h5 {
+    @apply mt-8 mb-2
+  }
+  .api-post ul {
+    @apply list-disc ml-5 mb-5
+  }
+  .api-post ul li, .api-post ol li {
+    @apply text-lg
+  }
+  .api-post ol {
+    @apply list-decimal ml-5 mb-5
+  }
+  .btn-danger {
+    @apply rounded-full
+  }
+  .comment pre {
+    @apply p-5 rounded-lg border dark:border-midnight-100 my-5
+  }
+}
