@@ -20,7 +20,7 @@
             Products</NuxtLink
           >
         </li>
-        <li>
+        <li class="hidden">
           <NuxtLink to="/locate"
             ><Icon name="bx:map" class="icon-style mr-1" /> Locate</NuxtLink
           >

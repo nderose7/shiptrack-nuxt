@@ -11,7 +11,7 @@
       /></span>
     </div>
     <div class="flex justify-between text-lg mb-4">
-      <div class="font-bold">Total: 2</div>
+      <div class="font-bold">Total: 1</div>
       <div class="text-right"></div>
     </div>
     <div class="table-container max-w-full">
