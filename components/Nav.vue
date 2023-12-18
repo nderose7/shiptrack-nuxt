@@ -32,19 +32,20 @@ const user = useStrapiUser();
 const token = useStrapiToken();
 const userdata = ref(null);
 
+const {
+  public: { strapiURL },
+} = useRuntimeConfig();
+
 const fetchUserWithRelations = async () => {
   try {
     // Replace ':id' with the actual user ID and specify the relations you want to populate
-    const response = await fetch(
-      `http://localhost:1337/api/users/me?populate=company`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token.value}`, // Make sure to use the correct auth token
-        },
-      }
-    );
+    const response = await fetch(`${strapiURL}/api/users/me?populate=company`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token.value}`, // Make sure to use the correct auth token
+      },
+    });
 
     userdata.value = await response.json();
   } catch (error) {

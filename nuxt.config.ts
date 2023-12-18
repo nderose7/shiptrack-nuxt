@@ -11,4 +11,9 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: ""
   },
+  runtimeConfig: {
+    public: {
+      strapiURL: process.env.STRAPI_URL,
+    }
+  }
 })
