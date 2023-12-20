@@ -2,7 +2,9 @@
   <div class="lg:flex justify-between">
     <ul class="main-nav lg:flex gap-10">
       <NuxtLink to="/" class="font-bold text-3xl lg:mr-10 inline-block py-4">
-        <Logo />
+        <div class="flex">
+          <CloudLogo class="w-[32px] inline-block mr-2" /> <Logo />
+        </div>
       </NuxtLink>
       <li><NuxtLink to="/">Home</NuxtLink></li>
       <li><NuxtLink to="/pricing">Pricing</NuxtLink></li>
