@@ -3,7 +3,9 @@
     <div class="grid-cols-2 items-center lg:grid lg:min-h-screen">
       <div class="py-4 lg:min-h-screen lg:px-8 lg:pt-6 lg:pb-0">
         <div class="mx-auto px-6 text-2xl lg:px-0 relative top-[-1px]">
-          <NuxtLink to="/"><Logo /></NuxtLink>
+          <NuxtLink to="/" class="flex">
+            <CloudLogo class="w-[32px] inline-block mr-2" /> <Logo />
+          </NuxtLink>
         </div>
         <div class="pt-3 sm:px-24 md:px-36 lg:px-0 lg:pt-20">
           <SignUp />

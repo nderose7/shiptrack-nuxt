@@ -1,12 +1,12 @@
 <template>
   <div
     id="landing-managed"
-    class="h-screen px-4 text-center dark:bg-midnight-900 bg-slate-100"
+    class="h-screen px-4 text-center dark:bg-midnight-800 bg-slate-100"
   >
     <div class="h-screen flex items-center justify-center">
       <div class="xl:w-1/5 lg:w-1/3 min-w-[320px]">
         <div
-          class="rounded-xl border bg-white px-8 pb-12 pt-10 dark:border-slate-800 dark:bg-midnight-700 lg:rounded-3xl"
+          class="rounded-xl border bg-white px-8 pb-12 pt-10 dark:border-slate-800 dark:bg-midnight-300 lg:rounded-3xl"
         >
           <div class="logo mb-6 px-10 text-4xl text-center">
             <NuxtLink to="/" class="inline-block">
@@ -103,6 +103,12 @@
 }
 input[type="password"] {
   font-family: Verdana;
+}
+.form-group {
+  @apply mb-4;
+}
+label {
+  @apply text-lg;
 }
 </style>
 

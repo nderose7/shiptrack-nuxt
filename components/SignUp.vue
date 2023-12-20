@@ -41,7 +41,7 @@
           :debug="debug"
           v-model="customUsername"
         />
-        <div class="relative mt-2">
+        <div class="relative mt-5">
           <VTextInput
             :type="showPassword ? 'text' : 'password'"
             name="password"
