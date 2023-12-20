@@ -166,43 +166,4 @@ const loginUser = async (e) => {
 useHead({
   meta: [{ name: "robots", content: "noindex" }],
 });
-
-// handle form submit
-/*
-const loginUser = async (e) => {
-  e.preventDefault();
-  if (name && email && password) {
-    // GraphQL Sign in Query
-    let signInQuery = {
-      query: `mutation( $email: String!, $password: String!) {
-        login(input: { identifier: $email, password: $password }) {
-          jwt,
-          user{
-            id
-            username
-            email
-          }
-        }
-      }`,
-      variables: { email: email.value, password: password.value },
-    };
-    try {
-      isLoading.value = true;
-      const { login, errors } = await sendReq(graphqlURL, { body: JSON.stringify(signInQuery), headers: { "Content-Type": "application/json" } });
-      if (errors) throw Error(errors);
-      setSession(login);
-
-      // notify and navigate to the home page
-
-      // Add in full-width alert for successful login and redirect to clients?
-      //alert("Sign in successful!");
-      navigateTo("/treatment-library");
-    } catch (error) {
-      console.log(error);
-    } finally {
-      isLoading.value = false;
-    }
-  }
-};
-*/
 </script>
