@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       strapiURL: process.env.STRAPI_URL,
+      googleMapsKEY: process.env.GOOGLE_MAPS_API_KEY,
     }
   }
 })

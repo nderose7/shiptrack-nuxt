@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-5 w-full pr-10">
+  <div class="mt-5 w-full px-10">
     <div
       class="w-full border-b dark:border-midnight-100 pb-1 mb-5 flex justify-between items-end"
     >

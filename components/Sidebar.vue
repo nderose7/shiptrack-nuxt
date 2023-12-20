@@ -1,7 +1,11 @@
 <template>
-  <div class="min-w-[260px] bg-slate-200 dark:bg-slate-700 h-full min-h-screen">
+  <div
+    class="min-w-[260px] bg-slate-200 dark:bg-midnight-900 h-full min-h-screen sticky top-0 hidden lg:block"
+  >
     <div class="px-7 py-5">
-      <div class="text-2xl mb-5"><Logo /></div>
+      <div class="text-2xl mb-5 flex gap-1 items-center">
+        <CloudLogo class="max-w-[32px] inline-block" /><Logo />
+      </div>
       <ul class="text-lg logged-in-nav">
         <li>
           <NuxtLink to="/dashboard"
@@ -20,9 +24,9 @@
             Products</NuxtLink
           >
         </li>
-        <li class="hidden">
-          <NuxtLink to="/locate"
-            ><Icon name="bx:map" class="icon-style mr-1" /> Locate</NuxtLink
+        <li class="">
+          <NuxtLink to="/addresses"
+            ><Icon name="bx:map" class="icon-style mr-1" /> Addresses</NuxtLink
           >
         </li>
         <li>
@@ -37,30 +41,126 @@
           >
         </li>
         <li>
-          <NuxtLink to="/settings"
+          <NuxtLink to="/settings/profile"
             ><Icon name="bx:cog" class="icon-style mr-1" /> Settings</NuxtLink
           >
         </li>
       </ul>
     </div>
-    <div
-      class="mx-5 fixed bottom-5 px-3 py-3 font-semibold border bg-slate-100 dark:bg-slate-800 rounded-lg lg:w-[220px] w-[220px] dark:border-slate-600"
-    >
-      <Icon name="bx:user" class="icon-style mr-1" /> {{ user.fullName }}
-      {{ user.admin ? "(Admin)" : "" }}
+    <div class="fixed bottom-5 px-5 lg:w-[260px] w-[260px]">
+      <div
+        v-if="showUserMenu"
+        class="px-3 py-2 pt-3 bg-slate-100 dark:bg-midnight-500 font-medium rounded-t-lg border-t border-l border-r dark:border-midnight-200 slideUpAnimation z-30 relative"
+      >
+        <label class=""
+          ><Icon
+            name="codicon:color-mode"
+            class="icon-style mr-1"
+            size="1rem"
+          />
+          Color Mode:</label
+        >
+        <div class="mt-2">
+          <ColorMode class="" />
+        </div>
+        <div class="mb-2 border-b pb-4 dark:border-gray-700"></div>
+        <NuxtLink
+          @click="showUserMenu = !showUserMenu"
+          to="/settings/profile"
+          class="mt-0 block py-1"
+        >
+          <Icon name="bx:cog" class="icon-style mr-1 lg:mx-0" /> Account
+          Settings
+        </NuxtLink>
+
+        <NuxtLink
+          @click="showUserMenu = !showUserMenu"
+          to="/logout"
+          class="block cursor-pointer py-1"
+        >
+          <Icon name="mdi:logout" class="icon-style mr-1 lg:mx-0" />
+          <span class="ml-1 inline-block"> Logout </span>
+        </NuxtLink>
+      </div>
+      <div
+        class="px-3 py-1 font-semibold border bg-slate-100 dark:bg-midnight-500 dark:border-midnight-200 flex gap-2 items-center w-full cursor-pointer z-40 relative"
+        :class="
+          (userData?.avatar?.url ? 'py-1' : 'py-3',
+          showUserMenu ? 'rounded-b-lg' : 'rounded-lg')
+        "
+        @click="showUserMenu = !showUserMenu"
+      >
+        <img
+          v-if="userData?.avatar?.url"
+          :src="`${userData?.avatar?.url}`"
+          alt="avatar"
+          class="h-[30px] w-[30px] cursor-pointer rounded-full"
+        />
+        <Icon v-else name="bx:user" class="" />
+        <div class="pt-1">
+          {{ user.firstName }} {{ user.lastName }}<br />
+          <span
+            v-if="user.admin"
+            class="text-sm relative top-[-5px] text-slate-500"
+          >
+            Admin
+          </span>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
 const user = useStrapiUser();
+const token = useStrapiToken();
+const userData = ref(null);
+const showUserMenu = ref(false);
+
+const {
+  public: { strapiURL },
+} = useRuntimeConfig();
+
+const fetchUserWithRelations = async () => {
+  try {
+    const response = await fetch(`${strapiURL}/api/users/me?populate=avatar`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token.value}`,
+      },
+    });
+
+    userData.value = await response.json();
+  } catch (error) {
+    console.error("Failed to fetch user with relations:", error);
+  }
+};
+
+onMounted(() => {
+  fetchUserWithRelations();
+});
 </script>
 
 <style scoped>
 .logged-in-nav li a {
-  @apply py-1 inline-block font-semibold;
+  @apply py-1 inline-block font-medium;
 }
 .logged-in-nav li a.router-link-active {
-  @apply text-blue-500 font-bold;
+  @apply text-blue-500 dark:text-blue-400 font-bold;
+}
+@keyframes slideUpDrawer {
+  from {
+    transform: translateY(50px); /* Start from off-screen */
+  }
+  to {
+    transform: translateY(0); /* End at the final position */
+  }
+}
+
+.slideUpAnimation {
+  position: relative; /* or 'relative' based on your layout */
+  bottom: 0; /* Adjust based on the height of the clickable div */
+  animation: slideUpDrawer 0.5s ease forwards;
 }
 </style>

@@ -4,7 +4,7 @@
       class="w-full border-b dark:border-midnight-100 pb-1 mb-5 flex justify-between items-end"
     >
       <div class="flex items-end gap-5">
-        <h1 class="text-2xl">Products</h1>
+        <h1 class="text-2xl">Addresses</h1>
       </div>
       <span class="font-medium text-lg"
         ><Icon name="bx:building" class="icon-style" /> <CompanyName

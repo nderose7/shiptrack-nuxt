@@ -1,46 +1,6 @@
 <template>
-  <div class="mt-5 w-full px-10">
-    <div
-      class="w-full border-b dark:border-midnight-100 pb-1 mb-5 flex justify-between items-end"
-    >
-      <div class="flex items-end gap-5">
-        <h1 class="text-2xl">Products</h1>
-      </div>
-      <span class="font-medium text-lg"
-        ><Icon name="bx:building" class="icon-style" /> <CompanyName
-      /></span>
-    </div>
-    <div class="flex justify-between text-lg">
-      <div class="font-bold">Total: 2</div>
-      <div class="text-right mb-4">
-        <button class="link font-bold">
-          <Icon name="lucide:import" class="icon-style mr-1" /> Import CSV
-        </button>
-      </div>
-    </div>
-    <div class="table-container max-w-full">
-      <el-table :data="processedProducts" style="font-size: 16px" fit>
-        <el-table-column
-          v-for="key in tableHeaders"
-          :key="key"
-          :prop="key"
-          :label="formatHeader(key)"
-          :width="getColumnWidth(key)"
-        >
-          <template v-if="key === 'description'" #default="{ row }">
-            {{ truncateString(row.description, 30) }}
-          </template>
-          <template v-if="key === 'updatedAt'" #default="{ row }">
-            {{ formatDateTime(row.updatedAt) }}
-          </template>
-        </el-table-column>
-        <el-table-column label="Actions" width="120">
-          <template #default="{ row }">
-            <Icon name="bx:cog" class="icon-style" />
-          </template>
-        </el-table-column>
-      </el-table>
-    </div>
+  <div class="w-full">
+    <SettingsNav />
   </div>
 </template>
 
@@ -93,7 +53,7 @@ const getColumnWidth = (key) => {
 
 onMounted(async () => {
   try {
-    const response = await find("products");
+    const response = await find("shipments");
     rawData.value = response.data;
 
     // Process data for the table

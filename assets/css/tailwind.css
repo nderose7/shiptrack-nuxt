@@ -69,7 +69,7 @@
   }
   .form-control
     input[type=text], .form-control input[type=email], .form-control input[type=password], .form-control input[type=phone], .form-control textarea, .form-control select, .form-control input[type=number] {
-    @apply dark:bg-midnight-900 bg-white border border-slate-300 dark:border-slate-800 w-full dark:text-gray-200 mb-3 pl-2 pr-6 py-2 rounded-md;
+    @apply dark:bg-midnight-900 bg-white border border-slate-300 dark:border-slate-800 w-full pl-3 pr-6 py-2 rounded-md;
   }
   .form-control select {
     @apply pr-14 py-2 rounded-md pl-4;
@@ -135,13 +135,19 @@
     @apply text-slate-200 border border-slate-200
   }
   .toast-style { 
-    background: #cbd5e1;
+    background: #b1cbea;
+  }
+  .light .swal2-icon.swal2-success [class^=swal2-success-line] {
+    background-color: #0177CC !important
+  }
+  .light .swal2-icon.swal2-success .swal2-success-ring {
+    border-color: #0177CC !important
   }
   .dark .swal2-icon.swal2-success [class^=swal2-success-line] { 
-    background-color: #6585e4 !important 
+    background-color: #0177CC !important 
   }
   .dark .swal2-icon.swal2-success .swal2-success-ring { 
-    border-color: #6585e4 !important 
+    border-color: #0177CC !important 
   }
   .dark .swal2-timer-progress-bar {
     @apply bg-midnight-90

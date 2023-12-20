@@ -10,6 +10,7 @@
         >
           <div class="logo mb-6 px-10 text-4xl text-center">
             <NuxtLink to="/" class="inline-block">
+              <CloudLogo class="w-[48px] mx-auto mb-3" />
               <Logo />
             </NuxtLink>
           </div>
@@ -89,7 +90,21 @@
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.cloud-logo {
+  @apply w-[48px];
+}
+.h-screen-minus-header {
+  height: calc(100vh - 100px); /* Default height */
+  @screen lg {
+    /* Tailwind's way to apply media queries */
+    height: calc(100vh - 100px); /* Adjusted height for large screens */
+  }
+}
+input[type="password"] {
+  font-family: Verdana;
+}
+</style>
 
 <script setup>
 import swalMixins from "~/mixins/swalMixins";
@@ -125,11 +140,19 @@ const loginUser = async (e) => {
     });
     router.push("/dashboard");
   } catch (error) {
-    console.log(error);
+    //loadingLogin.value = false;
+    console.error("Login error:", error);
+    let errorMessage = "Login failed. Please try again.";
+
+    // Check for error message in the expected structure
+    if (error && error.error && error.error.message) {
+      errorMessage = error.error.message;
+    }
+
     Toast.fire({
       icon: "error",
-      title: "Error!",
-      text: error,
+      title: "Login Error",
+      text: errorMessage,
     });
   }
 };

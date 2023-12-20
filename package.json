@@ -27,6 +27,8 @@
   },
   "dependencies": {
     "@element-plus/nuxt": "^1.0.7",
+    "@googlemaps/google-maps-services-js": "^3.3.42",
+    "@googlemaps/js-api-loader": "^1.16.2",
     "@stripe/stripe-js": "^2.2.1",
     "element-plus": "^2.4.4"
   }

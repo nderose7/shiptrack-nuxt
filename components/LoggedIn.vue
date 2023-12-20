@@ -1,7 +1,7 @@
 <template>
-  <div id="LoggedIn" class="md:flex gap-10 h-full min-h-screen">
+  <div id="LoggedIn" class="md:flex h-full min-h-screen">
     <Sidebar />
-    <NuxtPage />
+    <NuxtPage class="" />
   </div>
 </template>
 
