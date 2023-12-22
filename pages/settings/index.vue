@@ -1,10 +1,10 @@
 <template>
-  <div class="w-full">
-    <NuxtPage />
-  </div>
+  <div></div>
 </template>
 
 <script setup>
+navigateTo("/settings/profile");
+
 definePageMeta({
   layout: "loggedin",
   middleware: ["auth"],

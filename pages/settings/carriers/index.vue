@@ -2,7 +2,7 @@
   <div class="w-full">
     <SettingsNav />
     <div class="mt-10">
-      <AccountSettingsProfile />
+      <AccountSettingsCarriers />
     </div>
   </div>
 </template>

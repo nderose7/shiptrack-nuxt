@@ -8,7 +8,7 @@
       placeholder="Enter address"
       class="address-input text-lg"
     />
-    <ul v-if="suggestions.length" class="px-2">
+    <ul v-if="suggestions.length" class="px-3 text-lg overflow-x-scroll">
       <li
         v-for="suggestion in suggestions"
         :key="suggestion.place_id"
@@ -53,7 +53,10 @@ const fetchAddressSuggestions = async () => {
 };
 
 const props = defineProps({
-  modelValue: String, // This receives the initial value
+  modelValue: {
+    type: [String, Object],
+    default: "", // You can set a default value if needed
+  },
 });
 
 const emit = defineEmits(["update:modelValue"]);
@@ -75,10 +78,10 @@ const parseAddressComponents = (addressComponents, formattedAddress) => {
   };
 
   addressComponents.forEach((component) => {
-    if (component.types.includes("street_number")) {
+    if (component.types.includes("subpremise")) {
+      parsedAddress.subpremise = component.long_name;
+    } else if (component.types.includes("street_number")) {
       parsedAddress.streetNumber = component.long_name;
-    } else if (component.types.includes("subpremise")) {
-      parsedAddress.route = component.long_name;
     } else if (component.types.includes("route")) {
       parsedAddress.route = component.long_name;
     } else if (component.types.includes("locality")) {

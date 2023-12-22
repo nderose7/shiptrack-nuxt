@@ -31,16 +31,6 @@
           :debug="debug"
           v-model="email"
         />
-        <VTextInput
-          v-if="showUsernameField"
-          class="mt-2"
-          type="text"
-          name="username"
-          id="username"
-          label="Choose a Username"
-          :debug="debug"
-          v-model="customUsername"
-        />
         <div class="relative mt-5">
           <VTextInput
             :type="showPassword ? 'text' : 'password'"
@@ -96,17 +86,9 @@
 import { object, string, ref as yupRef } from "yup";
 import { configure } from "vee-validate";
 
-import { loadStripe } from "@stripe/stripe-js";
-
 const {
-  public: { strapiURL, stripeKey },
+  public: { strapiURL },
 } = useRuntimeConfig();
-
-const stripe = ref(null);
-
-const initializeStripe = async () => {
-  stripe.value = await loadStripe(stripeKey);
-};
 
 const email = ref("");
 const password = ref("");
@@ -205,16 +187,11 @@ const displayUsernameField = () => {
 };
 
 const onSubmit = async () => {
-  //console.log("Clicked");
-
   try {
     // Step 1: Register the user using the Strapi function
-    const usernameToUse = showUsernameField.value
-      ? customUsername.value
-      : email.value.split("@")[0];
 
     const userRegistered = await register({
-      username: usernameToUse,
+      username: email.value,
       email: email.value,
       password: password.value,
     });
@@ -229,35 +206,7 @@ const onSubmit = async () => {
 
     console.log(userId);
 
-    // Step 2: Complete the registration by creating a Stripe customer
-    const response = await fetch(`${strapiURL}/api/auth/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email: email.value,
-        userId: userId,
-      }),
-    });
-
-    // Step 3: Redirect the user to the Stripe checkout
-    const checkoutResponse = await fetch(
-      `${strapiURL}/api/create-checkout-session`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ userId }),
-      }
-    );
-
-    const { sessionId } = await checkoutResponse.json();
-    console.log(sessionId);
-
-    await initializeStripe();
-    stripe.value.redirectToCheckout({ sessionId });
+    navigateTo("/onboarding");
   } catch (error) {
     // Handle the unique username constraint
     if (
@@ -266,7 +215,7 @@ const onSubmit = async () => {
     ) {
       // Adjust this condition based on the exact error message from Strapi
       displayErrorMessage(
-        "Email or username already taken. Please choose a different one."
+        "Email already taken. Please choose a different one."
       );
       displayUsernameField(); // Function to render the "Username" input field for the user
     } else {

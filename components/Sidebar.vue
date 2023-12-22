@@ -4,7 +4,7 @@
   >
     <div class="px-7 py-5">
       <div class="text-2xl mb-5 flex gap-1 items-center">
-        <CloudLogo class="max-w-[32px] inline-block" /><Logo />
+        <CloudLogo class="max-w-[32px] inline-block mr-[2px]" /><Logo />
       </div>
       <ul class="text-lg logged-in-nav">
         <li>
@@ -34,14 +34,9 @@
             ><Icon name="bx:group" class="icon-style mr-1" /> Users</NuxtLink
           >
         </li>
-        <li class="hidden">
-          <NuxtLink to="/archive"
-            ><Icon name="bx:archive" class="icon-style mr-1" />
-            Archive</NuxtLink
-          >
-        </li>
+
         <li>
-          <NuxtLink to="/settings/profile"
+          <NuxtLink to="/settings"
             ><Icon name="bx:cog" class="icon-style mr-1" /> Settings</NuxtLink
           >
         </li>
@@ -73,21 +68,19 @@
           Settings
         </NuxtLink>
 
-        <NuxtLink
-          @click="showUserMenu = !showUserMenu"
-          to="/logout"
-          class="block cursor-pointer py-1"
-        >
+        <a href="/logout" class="block cursor-pointer py-1">
           <Icon name="mdi:logout" class="icon-style mr-1 lg:mx-0" />
           <span class="ml-1 inline-block"> Logout </span>
-        </NuxtLink>
+        </a>
       </div>
       <div
-        class="px-3 py-1 font-semibold border bg-slate-100 dark:bg-midnight-500 dark:border-midnight-200 flex gap-2 items-center w-full cursor-pointer z-40 relative"
-        :class="
-          (userData?.avatar?.url ? 'py-1' : 'py-3',
-          showUserMenu ? 'rounded-b-lg' : 'rounded-lg')
-        "
+        class="px-3 font-semibold border bg-slate-100 dark:bg-midnight-500 dark:border-midnight-200 flex gap-2 items-center w-full cursor-pointer z-40 relative"
+        :class="{
+          'py-1': user.admin,
+          'py-3': !user.admin,
+          'rounded-b-lg': showUserMenu,
+          'rounded-lg': !showUserMenu,
+        }"
         @click="showUserMenu = !showUserMenu"
       >
         <img
@@ -97,8 +90,8 @@
           class="h-[30px] w-[30px] cursor-pointer rounded-full"
         />
         <Icon v-else name="bx:user" class="" />
-        <div class="pt-1">
-          {{ user.firstName }} {{ user.lastName }}<br />
+        <div class="pt-0" :class="user.admin ? 'pt-1' : ''">
+          {{ user.firstName || user.email }} {{ user.lastName }}<br />
           <span
             v-if="user.admin"
             class="text-sm relative top-[-5px] text-slate-500"
@@ -144,10 +137,10 @@ onMounted(() => {
 
 <style scoped>
 .logged-in-nav li a {
-  @apply py-1 inline-block font-medium;
+  @apply py-1 inline-block font-semibold;
 }
 .logged-in-nav li a.router-link-active {
-  @apply text-blue-500 dark:text-blue-400 font-bold;
+  @apply text-blue-500 dark:text-blue-400 font-semibold;
 }
 @keyframes slideUpDrawer {
   from {

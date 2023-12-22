@@ -97,7 +97,7 @@ onMounted(async () => {
     rawData.value = response.data;
 
     // Process data for the table
-    processedProducts.value = rawData.value.map((item) => item.attributes);
+    processedProducts.value = rawData.value.map((item) => item);
 
     // Dynamically create table headers, exclude certain fields
     if (processedProducts.value.length > 0) {

@@ -1,8 +1,8 @@
 <template>
   <div class="w-full">
     <SettingsNav />
-    <div class="mt-10">
-      <AccountSettingsProfile />
+    <div class="">
+      <AccountSettingsAddCarrier />
     </div>
   </div>
 </template>

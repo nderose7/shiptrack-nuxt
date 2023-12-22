@@ -95,6 +95,7 @@
         <label for="address-input" class="block font-bold"
           >Default Origin Address</label
         >
+
         <div
           class="rounded-xl bg-slate-200 px-5 pt-5 pb-2 dark:bg-midnight-400"
         >
@@ -325,6 +326,7 @@ async function onSubmit() {
         body: formData,
       });
     }
+    fetchUserWithRelations();
     Toast.fire({
       icon: "success",
       title: "Profile Saved",

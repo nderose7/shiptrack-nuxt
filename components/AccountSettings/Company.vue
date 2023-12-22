@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ companyData }}
     <Form class="form-control xl:w-1/2" @submit="onSubmit">
       <div>
         <label for="companyName">Company Name</label>
@@ -63,7 +64,7 @@ import { Form, Field, ErrorMessage } from "vee-validate";
 import swalMixins from "~/mixins/swalMixins";
 const { Toast } = swalMixins.data();
 const user = useStrapiUser();
-const { findOne, update } = useStrapi();
+const { findOne, update, find } = useStrapi();
 
 const token = useStrapiToken();
 const userData = ref(null);
@@ -100,20 +101,13 @@ const companyId = computed(() => {
   return "";
 });
 
-const companyData = await findOne("companies", companyId.value, {
+const companyData = await find("companies", companyId.value, {
   populate: "users",
 });
 
 const companyDataValue = computed(() => {
-  if (companyData) {
+  if (companyData.data[0]) {
     return companyData.data[0].attributes;
-  }
-  return "";
-});
-
-const companyNameValue = computed(() => {
-  if (companyData.value?.companyName) {
-    return companyData.value.companyName;
   }
   return "";
 });
@@ -141,6 +135,7 @@ const onSubmit = async () => {
       county: companyAddress.value.county,
       website: companyWebsite.value,
       subpremise: companyAddress.value.subpremise,
+      phone: companyPhone.value,
     });
     Toast.fire({
       icon: "success",
