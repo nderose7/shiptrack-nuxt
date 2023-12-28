@@ -1,5 +1,5 @@
 <template>
-  <span class="text-base">{{ company?.name }}</span>
+  <span class="">{{ company?.name }}</span>
 </template>
 
 <script setup>
@@ -28,7 +28,7 @@ const fetchUserWithRelations = async () => {
   }
 };
 
-onBeforeMount(() => {
+onMounted(() => {
   fetchUserWithRelations();
 });
 </script>

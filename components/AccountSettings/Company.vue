@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ companyData }}
     <Form class="form-control xl:w-1/2" @submit="onSubmit">
       <div>
         <label for="companyName">Company Name</label>
@@ -15,8 +14,8 @@
         <label for="companyName">Company Address</label>
         <AddressAutocomplete v-model="companyAddress" />
       </div>
-      <div class="flex gap-5">
-        <div class="w-5/12">
+      <div class="lg:flex gap-5">
+        <div class="lg:w-5/12">
           <label for="companyPhone">Company Phone</label>
           <Field
             name="companyPhone"

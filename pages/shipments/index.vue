@@ -9,57 +9,75 @@
         <button class="lg:hidden" @click="toggleSidebar">
           <Icon name="majesticons:menu-alt-line" size="1.5rem" />
         </button>
-        <h1 class="text-2xl">Addresses</h1>
+        <h1 class="text-2xl">Shipments</h1>
         <div><Icon name="majesticons:search-line" size="1.5rem" /></div>
       </div>
     </div>
     <div class="flex justify-between text-lg mb-4 items-center">
-      <div class="font-bold">Total: {{ totalAddresses }}</div>
+      <div class="font-bold">Total: {{ totalShipments }}</div>
       <div class="text-right">
-        <button class="link font-bold">
-          <Icon name="lucide:import" class="icon-style mr-1" /> Import CSV
-        </button>
+        <NuxtLink
+          to="/shipments/new-shipment"
+          class="btn-primary inline-block px-4 py-1"
+          >New Shipment</NuxtLink
+        >
       </div>
     </div>
 
-    <div>
+    <div class="">
       <div
-        v-for="address in processedAddresses"
-        class="dark:bg-midnight-500 my-3 p-5 rounded-lg"
+        v-for="shipment in processedShipments"
+        class="dark:bg-midnight-500 my-5 p-5 rounded-lg"
       >
-        <div class="font-bold text-xl">{{ address.name }}</div>
-        <div class="my-2">
-          <Icon name="bx:building" class="icon-style" />
-          {{ address.organization }}
+        <NuxtLink :to="`/shipments/${shipment.id}`" class="link">
+          <div class="text-2xl font-bold">
+            {{ shipment.product.name }}
+          </div>
+        </NuxtLink>
+        <div class="mb-4 mt-2 font-bold">
+          {{ shipment?.carrierName }} {{ shipment?.carrierService }}
         </div>
-        <div class="my-2">
-          <Icon name="bx:current-location" class="icon-style" />
-          {{ address.address }}
+        <div>
+          <div class="text-base font-bold text-slate-500 mb-1">FROM</div>
+          <b>{{ shipment?.fromName }}</b
+          ><br />
+          {{ shipment?.originAddress }}
         </div>
-        <div class="my-2">
-          <Icon name="bx:envelope" class="icon-style" />
-          {{ address.email }}
-        </div>
-        <div class="my-2">
-          <Icon name="bx:phone" class="icon-style" /> {{ address.phone }}
+        <div>
+          <div class="mt-4">
+            <div class="text-base font-bold text-slate-500 mb-1">TO</div>
+            <b>{{ shipment?.toName }}</b
+            ><br />
+            {{ shipment?.destinationAddress }}
+          </div>
+
+          <div class="mt-4 hidden">
+            <div class="text-base font-bold text-slate-500 mb-1">COST</div>
+            <b>Rate: </b> ${{ shipment?.cost }}
+          </div>
+          <NuxtLink
+            :to="`/shipments/${shipment.id}`"
+            class="btn-primary inline-block px-5 py-2 text-xl mt-5"
+          >
+            <div class="">Track</div>
+          </NuxtLink>
         </div>
       </div>
     </div>
 
     <div class="table-container max-w-full hidden">
-      <el-table :data="processedAddresses" style="font-size: 16px" fit>
+      <el-table :data="processedShipments" style="font-size: 16px" fit>
         <el-table-column
           v-for="key in tableHeaders"
           :key="key"
           :prop="key"
           :label="formatHeader(key)"
-          :width="getColumnWidth(key)"
         >
-          <template v-if="key === 'description'" #default="{ row }">
-            {{ truncateString(row.description, 30) }}
-          </template>
           <template v-if="key === 'updatedAt'" #default="{ row }">
             {{ formatDateTime(row.updatedAt) }}
+          </template>
+          <template v-if="key === 'id'" #default="{ row }">
+            <NuxtLink :to="`/shipments/${row.id}`"> {{ row.id }}</NuxtLink>
           </template>
         </el-table-column>
         <el-table-column label="Actions" width="120">
@@ -82,6 +100,7 @@
 </style>
 
 <script setup>
+import { sidebarVisible } from "@/composables/state.js";
 import "element-plus/theme-chalk/dark/css-vars.css";
 import { zonedTimeToUtc, utcToZonedTime, format } from "date-fns-tz";
 import { truncateString } from "~/utils/truncateString.js";
@@ -89,10 +108,10 @@ const user = useStrapiUser();
 const { find } = useStrapi();
 
 const rawData = ref([]);
-const processedAddresses = ref([]);
+const processedShipments = ref([]);
 const tableHeaders = ref([]);
 
-const totalAddresses = ref();
+const totalShipments = ref();
 
 const toggleSidebar = () => {
   sidebarVisible.value = !sidebarVisible.value;
@@ -127,19 +146,48 @@ const getColumnWidth = (key) => {
 
 onMounted(async () => {
   try {
-    const response = await find("addresses");
+    const response = await find("shipments");
     rawData.value = response.data;
 
     // Process data for the table
-    processedAddresses.value = rawData.value.map((item) => item);
+    processedShipments.value = rawData.value.map((item) => item);
 
     // Dynamically create table headers, exclude certain fields
-    if (processedAddresses.value.length > 0) {
-      tableHeaders.value = Object.keys(processedAddresses.value[0]).filter(
-        (key) => !["createdAt", "publishedAt"].includes(key)
+    if (processedShipments.value.length > 0) {
+      tableHeaders.value = Object.keys(processedShipments.value[0]).filter(
+        (key) =>
+          ![
+            "createdAt",
+            "publishedAt",
+            "toCity",
+            "toCountry",
+            "toState",
+            "toPhone",
+            "toStreet1",
+            "toZip",
+            "fromCity",
+            "fromCountry",
+            "fromState",
+            "fromPhone",
+            "fromStreet1",
+            "fromZip",
+            "length",
+            "width",
+            "height",
+            "weight",
+            "toEmail",
+            "fromEmail",
+            "updatedAt",
+            "company",
+            "easyPostId",
+            "labelLink",
+            "sentBy",
+            "shippingOption",
+          ].includes(key)
       );
     }
-    totalAddresses.value = processedAddresses.value.length;
+
+    totalShipments.value = processedShipments.value.length;
   } catch (error) {
     console.error("Error fetching data:", error);
   }

@@ -1,12 +1,5 @@
 <template>
-  <button
-    type="button"
-    @click.prevent="$router.back()"
-    class="mb-0 mt-6 btn-gray btn-sm"
-  >
-    <Icon name="mdi:arrow-left" class="icon-style" /> Back
-  </button>
-  <div class="mt-5">
+  <div class="mt-5 pb-32">
     <h2 class="text-xl mb-4">Connect Existing Carrier Account</h2>
     <div class="gap-4 hidden">
       <button
@@ -219,6 +212,59 @@
               <input type="text" v-model="websiteUPS" />
             </div>
           </div>
+
+          <div class="mb-5 rounded-xl bg-slate-200 p-6 dark:bg-midnight-400">
+            <span class="text-lg"
+              ><b>Is your account more than 30 days old?</b></span
+            >
+            <div class="toggle-container w-fit mt-4">
+              <div
+                :class="{ active: showUPSInvoice }"
+                class="toggle-option"
+                @click="showUPSInvoice = true"
+              >
+                Yes
+              </div>
+              <div
+                :class="{ active: !showUPSInvoice }"
+                class="toggle-option"
+                @click="showUPSInvoice = false"
+              >
+                No
+              </div>
+            </div>
+            <div v-if="showUPSInvoice" class="mt-5">
+              <span class="text-lg"
+                ><b
+                  >Please provide details from an invoice to securely connect
+                  your account.
+                </b></span
+              >
+              <div class="w-full mt-5">
+                <label for="">Invoice Number</label>
+                <input type="text" v-model="invoiceNumberUPS" />
+              </div>
+              <div class="w-full mt-5">
+                <label for="">Invoice Date</label>
+                <input type="text" v-model="invoiceDateUPS" />
+              </div>
+              <div class="lg:flex gap-4">
+                <div class="lg:w-2/3 mt-5">
+                  <label for="">Invoice Amount</label>
+                  <input type="text" v-model="invoiceAmountUPS" />
+                </div>
+                <div class="lg:w-1/3 mt-5">
+                  <label for="">Invoice Currency</label>
+                  <input type="text" v-model="invoiceCurrencyUPS" />
+                </div>
+              </div>
+
+              <div class="w-full mt-5">
+                <label for="">Invoice Control ID</label>
+                <input type="text" v-model="invoiceControlIdUPS" />
+              </div>
+            </div>
+          </div>
         </div>
         <button type="submit" class="btn-primary px-4 py-2 inline-block mt-4">
           <span v-if="connectingAccount"
@@ -299,9 +345,9 @@
   @apply text-blue-500  border-blue-500;
 }
 .carrier-options {
-  @apply bg-slate-300 dark:bg-midnight-900 px-2 py-1 rounded w-fit mt-5 flex gap-2;
+  @apply w-fit mt-5 flex gap-1;
   button {
-    @apply border rounded px-3 py-1 bg-white font-bold dark:bg-slate-800 dark:border-midnight-200;
+    @apply border rounded px-3 py-1 bg-white font-bold dark:bg-midnight-900 dark:border-midnight-200 text-lg;
     &.carrierButtonActive {
       @apply bg-blue-500 text-white border-blue-500;
     }
@@ -310,6 +356,21 @@
 label,
 input {
   @apply text-lg;
+}
+.toggle-container {
+  @apply flex rounded-lg overflow-hidden border dark:border-midnight-200 mb-2 font-medium dark:bg-midnight-300 bg-white;
+}
+
+.toggle-option {
+  @apply cursor-pointer py-2 px-4 text-center flex-1 text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-midnight-200;
+  transition: background-color 0.3s;
+}
+.toggle-option:first-child {
+  @apply border-r dark:border-midnight-200;
+}
+
+.toggle-option.active {
+  @apply text-blue-500 dark:bg-midnight-600 font-bold  dark:border-midnight-200 border-slate-300 bg-white;
 }
 </style>
 
@@ -329,6 +390,8 @@ const successFEDEX = ref(false);
 const successUPS = ref(false);
 const successUSPS = ref(false);
 const connectingAccount = ref(false);
+
+const showUPSInvoice = ref(false);
 
 const expandAddress = ref(false);
 

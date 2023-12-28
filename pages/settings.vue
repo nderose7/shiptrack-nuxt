@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full px-10">
+  <div class="w-full lg:px-10 px-5">
     <NuxtPage />
   </div>
 </template>

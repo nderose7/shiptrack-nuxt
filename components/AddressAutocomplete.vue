@@ -33,7 +33,7 @@ const fetchAddressSuggestions = async () => {
   if (address.value.length > 3) {
     try {
       const response = await fetch(
-        `${strapiURL}/api/addresses/autocomplete?input=${address.value}`,
+        `${strapiURL}/api/address-autocomplete?input=${address.value}`,
         {
           method: "GET",
           headers: {
@@ -105,7 +105,7 @@ const parseAddressComponents = (addressComponents, formattedAddress) => {
 const selectAddress = async (suggestion) => {
   try {
     const response = await fetch(
-      `${strapiURL}/api/addresses/details?place_id=${suggestion.place_id}`,
+      `${strapiURL}/api/address-details?place_id=${suggestion.place_id}`,
       {
         method: "GET",
         headers: {

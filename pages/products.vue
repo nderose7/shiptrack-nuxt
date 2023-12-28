@@ -1,24 +1,37 @@
 <template>
-  <div class="mt-5 w-full px-10">
+  <div class="w-full lg:px-10 px-5 pb-32">
     <div
-      class="w-full border-b dark:border-midnight-100 pb-1 mb-5 flex justify-between items-end"
+      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200"
     >
-      <div class="flex items-end gap-5">
+      <div
+        class="border-b w-full dark:border-midnight-100 pb-1 flex gap-5 text-center items-center justify-between"
+      >
+        <button class="lg:hidden" @click="toggleSidebar">
+          <Icon name="majesticons:menu-alt-line" size="1.5rem" />
+        </button>
         <h1 class="text-2xl">Products</h1>
+        <div><Icon name="majesticons:search-line" size="1.5rem" /></div>
       </div>
-      <span class="font-medium text-lg"
-        ><Icon name="bx:building" class="icon-style" /> <CompanyName
-      /></span>
     </div>
-    <div class="flex justify-between text-lg">
-      <div class="font-bold">Total: 2</div>
-      <div class="text-right mb-4">
+    <div class="flex justify-between text-lg mb-4 items-center">
+      <div class="font-bold">Total: {{ totalProducts }}</div>
+      <div class="text-right">
         <button class="link font-bold">
           <Icon name="lucide:import" class="icon-style mr-1" /> Import CSV
         </button>
       </div>
     </div>
-    <div class="table-container max-w-full">
+
+    <div
+      v-for="product in processedProducts"
+      class="dark:bg-midnight-500 my-3 p-5 rounded-lg"
+    >
+      <div class="font-bold text-xl">{{ product.name }}</div>
+      <div>{{ product.serial }}</div>
+      <div>{{ product.location ? product.location : "" }}</div>
+    </div>
+
+    <div class="table-container max-w-full hidden">
       <el-table :data="processedProducts" style="font-size: 16px" fit>
         <el-table-column
           v-for="key in tableHeaders"
@@ -64,7 +77,11 @@ const rawData = ref([]);
 const processedProducts = ref([]);
 const tableHeaders = ref([]);
 
-//const { data: products } = await find("products");
+const totalProducts = ref();
+
+const toggleSidebar = () => {
+  sidebarVisible.value = !sidebarVisible.value;
+};
 
 // Function to format the header text
 const formatHeader = (header) => {
@@ -105,6 +122,7 @@ onMounted(async () => {
         (key) => !["createdAt", "publishedAt"].includes(key)
       );
     }
+    totalProducts.value = processedProducts.value.length;
   } catch (error) {
     console.error("Error fetching data:", error);
   }

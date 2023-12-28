@@ -1,0 +1,1 @@
+export const sidebarVisible = ref(false);

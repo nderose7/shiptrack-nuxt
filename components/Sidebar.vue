@@ -1,46 +1,53 @@
 <template>
   <div
-    class="min-w-[260px] bg-slate-200 dark:bg-midnight-900 h-full min-h-screen sticky top-0 hidden lg:block"
+    class="bg-slate-200 dark:bg-midnight-900 h-full min-h-screen lg:sticky top-0 w-[330px] max-h-screen"
   >
     <div class="px-7 py-5">
       <div class="text-2xl mb-5 flex gap-1 items-center">
         <CloudLogo class="max-w-[32px] inline-block mr-[2px]" /><Logo />
       </div>
-      <ul class="text-lg logged-in-nav">
+      <ul class="lg:text-lg text-xl logged-in-nav">
         <li>
-          <NuxtLink to="/dashboard"
+          <NuxtLink to="/dashboard" @click="closeSidebar"
             ><Icon name="bx:tachometer" class="icon-style mr-1" />
             Dashboard</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/shipments"
+          <NuxtLink to="/shipments" @click="closeSidebar"
             ><Icon name="bx:send" class="icon-style mr-1" /> Shipments</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/products"
+          <NuxtLink to="/products" @click="closeSidebar"
             ><Icon name="bx:package" class="icon-style mr-1" />
             Products</NuxtLink
           >
         </li>
         <li class="">
-          <NuxtLink to="/addresses"
+          <NuxtLink to="/addresses" @click="closeSidebar"
             ><Icon name="bx:map" class="icon-style mr-1" /> Addresses</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/users"
+          <NuxtLink to="/users" @click="closeSidebar"
             ><Icon name="bx:group" class="icon-style mr-1" /> Users</NuxtLink
           >
         </li>
 
         <li>
-          <NuxtLink to="/settings"
+          <NuxtLink to="/settings" @click="closeSidebar"
             ><Icon name="bx:cog" class="icon-style mr-1" /> Settings</NuxtLink
           >
         </li>
       </ul>
+      <NuxtLink
+        to="/shipments/new-shipment"
+        class="btn-primary px-5 py-3 mt-8 flex justify-between items-center lg:hidden"
+        @click="closeSidebar"
+        ><div>New Shipment</div>
+        <Icon name="mdi:arrow-right" />
+      </NuxtLink>
     </div>
     <div class="fixed bottom-5 px-5 lg:w-[260px] w-[260px]">
       <div
@@ -60,7 +67,7 @@
         </div>
         <div class="mb-2 border-b pb-4 dark:border-gray-700"></div>
         <NuxtLink
-          @click="showUserMenu = !showUserMenu"
+          @click="(showUserMenu = !showUserMenu), closeSidebar()"
           to="/settings/profile"
           class="mt-0 block py-1"
         >
@@ -96,7 +103,10 @@
             v-if="user.admin"
             class="text-sm relative top-[-5px] text-slate-500"
           >
-            Admin
+            Admin <span class="text-midnight-100">|</span> <CompanyName />
+          </span>
+          <span v-else>
+            <span class="text-midnight-100">|</span> <CompanyName />
           </span>
         </div>
       </div>
@@ -113,6 +123,14 @@ const showUserMenu = ref(false);
 const {
   public: { strapiURL },
 } = useRuntimeConfig();
+
+const props = defineProps({
+  isVisible: Boolean,
+});
+
+const closeSidebar = () => {
+  sidebarVisible.value = false;
+};
 
 const fetchUserWithRelations = async () => {
   try {
@@ -137,7 +155,7 @@ onMounted(() => {
 
 <style scoped>
 .logged-in-nav li a {
-  @apply py-1 inline-block font-semibold;
+  @apply lg:py-1 py-2 inline-block font-semibold;
 }
 .logged-in-nav li a.router-link-active {
   @apply text-blue-500 dark:text-blue-400 font-semibold;

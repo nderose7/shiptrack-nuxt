@@ -1,11 +1,11 @@
 <template>
   <div class="pb-32">
     <h1 class="text-2xl">Carrier Accounts</h1>
-    <div class="grid lg:grid-cols-4 grid-cols-2 my-4">
+    <div class="lg:grid lg:grid-cols-4 grid-cols-2 my-4 gap-5">
       <div
         v-if="carriers?.length"
         v-for="carrier in carriers"
-        class="p-4 bg-white dark:bg-midnight-500 rounded-lg drop-shadow dark:border dark:border-midnight-100"
+        class="p-4 bg-white dark:bg-midnight-500 rounded-lg drop-shadow dark:border dark:border-midnight-100 my-2"
       >
         <div class="text-xl font-bold">{{ carrier.name }}</div>
         <div class="text-base">{{ carrier.accountId }}</div>

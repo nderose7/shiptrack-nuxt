@@ -2,7 +2,7 @@
   <div class="marketing-page min-h-screen">
     <div class="">
       <div class="px-5 max-w-[1680px] mx-auto">
-        <div class="flex items-center w-full justify-between">
+        <div class="lg:flex items-center w-full justify-between">
           <div class="w-full">
             <Nav />
           </div>

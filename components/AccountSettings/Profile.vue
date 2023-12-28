@@ -99,6 +99,20 @@
         <div
           class="rounded-xl bg-slate-200 px-5 pt-5 pb-2 dark:bg-midnight-400"
         >
+          <div class="toggle-container">
+            <div
+              :class="{ 'toggle-option': true, active: useCompanyName }"
+              @click="useCompanyName = true"
+            >
+              {{ userData?.company?.name }}
+            </div>
+            <div
+              :class="{ 'toggle-option': true, active: !useCompanyName }"
+              @click="useCompanyName = false"
+            >
+              {{ userData?.firstName + " " + userData?.lastName }}
+            </div>
+          </div>
           <AddressAutocomplete v-model="defaultOriginAddress" />
           <p class="text-base mt-2 pl-1 dark:text-slate-400 text-slate-500">
             <Icon
@@ -186,6 +200,21 @@ input::file-selector-button:active,
 input::file-selector-button:focus {
   @apply border border-blue-500 bg-blue-600;
 }
+.toggle-container {
+  @apply flex rounded-lg overflow-hidden border dark:border-midnight-200 mb-2 font-medium dark:bg-midnight-300 bg-white;
+}
+
+.toggle-option {
+  @apply cursor-pointer py-2 px-4 text-center flex-1 text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-midnight-200;
+  transition: background-color 0.3s;
+}
+.toggle-option:first-child {
+  @apply border-r dark:border-midnight-200;
+}
+
+.toggle-option.active {
+  @apply text-blue-500 dark:bg-midnight-600 font-bold  dark:border-midnight-200 border-slate-300 bg-white;
+}
 </style>
 
 <script setup>
@@ -198,6 +227,7 @@ const { find, findOne, create, update, delete: remove } = useStrapi();
 
 const token = useStrapiToken();
 const userData = ref(null);
+const useCompanyName = ref(user.value?.useCompanyNameForOrigin);
 
 const {
   public: { strapiURL },
@@ -297,6 +327,7 @@ async function onSubmit() {
           county: defaultOriginAddress.value.county,
           website: defaultOriginAddress.value,
           subpremise: defaultOriginAddress.value.subpremise,
+          useCompanyNameForOrigin: useCompanyName.value,
         }),
       });
       if (!response.ok) {
@@ -341,13 +372,16 @@ async function onSubmit() {
 
 const fetchUserWithRelations = async () => {
   try {
-    const response = await fetch(`${strapiURL}/api/users/me?populate=avatar`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token.value}`,
-      },
-    });
+    const response = await fetch(
+      `${strapiURL}/api/users/me?populate=avatar,company`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+      }
+    );
 
     userData.value = await response.json();
   } catch (error) {

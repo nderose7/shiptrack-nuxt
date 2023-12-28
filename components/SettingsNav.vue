@@ -1,18 +1,17 @@
 <template>
-  <div class="mt-5 w-full">
+  <div class="w-full">
     <div
-      class="w-full border-b dark:border-midnight-100 pb-1 mb-5 flex justify-between items-end"
+      class="w-full lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200"
     >
-      <div class="flex items-end gap-5">
-        <h1 class="text-2xl">Account Settings</h1>
+      <div
+        class="border-b w-full dark:border-midnight-100 pb-1 flex gap-5 text-center items-center justify-between"
+      >
+        <button class="lg:hidden" @click="toggleSidebar">
+          <Icon name="majesticons:menu-alt-line" size="1.5rem" />
+        </button>
+        <h1 class="text-2xl">Settings</h1>
+        <div><Icon name="majesticons:search-line" size="1.5rem" /></div>
       </div>
-      <span class="font-medium text-lg"
-        ><Icon
-          name="bx:building"
-          class="mr-1 relative top-[-1px]"
-          size="1rem" />
-        <CompanyName
-      /></span>
     </div>
     <ul class="flex text-lg">
       <li><NuxtLink to="/settings/profile">Profile</NuxtLink></li>
@@ -24,6 +23,12 @@
     </ul>
   </div>
 </template>
+
+<script setup>
+const toggleSidebar = () => {
+  sidebarVisible.value = !sidebarVisible.value;
+};
+</script>
 
 <style scoped>
 ul li {
