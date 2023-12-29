@@ -98,7 +98,8 @@
   }
 }
 .no-scroll {
-  overflow-y: hidden;
+  width: 100%;
+  position: fixed;
 }
 </style>
 
