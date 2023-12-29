@@ -1,7 +1,7 @@
 <template>
   <div class="w-full pb-20 xl:w-1/2">
     <Form class="vue-form form-control rounded-lg text-left" @submit="onSubmit">
-      <div class="w-full text-lg flex gap-5 mb-6">
+      <div class="w-full text-lg md:flex gap-5 mb-6 space-y-5 md:space-y-0">
         <div class="w-full">
           <label for="firstName" class="block font-bold">First Name</label>
           <Field

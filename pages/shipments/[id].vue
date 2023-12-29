@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:px-10 px-5 min-h-screen pb-32">
     <div
-      class="w-full pb-3 mb-5 flex justify-between items-end sticky top-0 pt-5 dark:bg-midnight-200"
+      class="w-full pb-3 mb-5 flex justify-between items-end sticky top-0 pt-5 dark:bg-midnight-200 bg-white z-50"
     >
       <div
         class="flex items-end gap-5 border-b dark:border-midnight-100 pb-1 w-full"
@@ -175,7 +175,7 @@ tr td:first-child {
   @apply font-bold;
 }
 .tracking-container {
-  @apply dark:bg-midnight-500 bg-slate-200 rounded-lg xl:p-8 xl:py-6 p-6 py-4;
+  @apply dark:bg-midnight-500 bg-slate-100 rounded-lg xl:p-8 xl:py-6 p-6 py-4;
 }
 .tracking-event {
   @apply py-2;

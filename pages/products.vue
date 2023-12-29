@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:px-10 px-5 pb-32">
     <div
-      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200 z-50"
+      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200 bg-white z-50"
     >
       <div
         class="border-b w-full dark:border-midnight-100 pb-1 flex gap-5 text-center items-center justify-between"
@@ -24,7 +24,7 @@
 
     <div
       v-for="product in processedProducts"
-      class="dark:bg-midnight-500 bg-white drop-shadow my-3 p-5 rounded-lg"
+      class="dark:bg-midnight-500 bg-slate-100 drop-shadow my-3 p-5 rounded-lg"
     >
       <div class="font-bold text-xl">{{ product.name }}</div>
       <div>{{ product.serial }}</div>
