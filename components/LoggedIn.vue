@@ -1,19 +1,16 @@
 <template>
-  <div id="LoggedIn" class="md:flex h-full min-h-screen">
+  <div id="LoggedIn" class="md:flex h-full min-h-screen overflow-x-hidden">
     <Sidebar
       class="sidebar"
       :isVisible="sidebarVisible"
       :class="{ visible: sidebarVisible }"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="handleTouchEnd"
     />
     <div class="content" :class="{ 'content-expanded': sidebarVisible }">
-      <div
-        v-if="sidebarVisible"
-        class="swipe-area z-10"
-        @touchstart="handleTouchStart"
-        @touchmove="handleTouchMove"
-        @touchend="handleTouchEnd"
-      ></div>
-      <NuxtPage class="z-20" />
+      <div class="swipearea" @click="sidebarVisible = false"></div>
+      <NuxtPage />
     </div>
   </div>
 </template>
@@ -23,11 +20,9 @@ import { sidebarVisible } from "@/composables/state.js";
 
 const touchStartX = ref(0);
 const touchEndX = ref(0);
-const touchStartTime = ref(0);
 
 const handleTouchStart = (event) => {
   touchStartX.value = event.changedTouches[0].screenX;
-  touchStartTime.value = new Date().getTime();
 };
 
 const handleTouchMove = (event) => {
@@ -35,25 +30,10 @@ const handleTouchMove = (event) => {
 };
 
 const handleTouchEnd = () => {
-  const deltaX = touchEndX.value - touchStartX.value;
-  const deltaTime = new Date().getTime() - touchStartTime.value;
-
-  // Adjust these thresholds as needed
-  const swipeThreshold = 100; // Min distance for a swipe gesture
-  const timeThreshold = 400; // Max time for a swipe gesture
-
-  if (
-    deltaX > swipeThreshold &&
-    deltaTime < timeThreshold &&
-    touchStartX.value < 50
-  ) {
+  if (touchStartX.value < 50 && touchEndX.value > 150) {
     // Swipe Right - Open Sidebar
     sidebarVisible.value = true;
-  } else if (
-    deltaX < -swipeThreshold &&
-    deltaTime < timeThreshold &&
-    sidebarVisible.value
-  ) {
+  } else if (touchEndX.value < touchStartX.value && sidebarVisible.value) {
     // Swipe Left - Close Sidebar
     sidebarVisible.value = false;
   }
@@ -104,12 +84,7 @@ const handleTouchEnd = () => {
   }
 }
 
-/* Style for the area that detects swipe gestures */
-.swipe-area {
-  position: absolute;
-  right: top;
-  top: 60px;
-  width: 50px; /* Width of the swipe-sensitive area */
-  height: 100vh;
+.swipearea {
+  @apply absolute top-[56px] min-h-screen w-[50px];
 }
 </style>
