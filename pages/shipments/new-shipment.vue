@@ -200,9 +200,7 @@
           </div>
         </div>
       </div>
-      <div
-        class="dark:bg-midnight-700 bg-slate-200 z-50 fixed bottom-0 py-10 w-full"
-      >
+      <div class="dark:bg-black bg-white z-50 fixed bottom-0 py-10 w-full">
         <button
           @click="createShipment()"
           class="btn-primary inline-block px-5 py-2"
