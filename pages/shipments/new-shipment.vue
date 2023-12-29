@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:px-10 px-5 min-h-screen">
     <div
-      class="w-full pb-3 mb-2 flex justify-between items-end sticky top-0 pt-5 dark:bg-black bg-white z-50"
+      class="w-full pb-3 mb-2 flex justify-between items-end sticky top-0 pt-5 dark:bg-black bg-white"
     >
       <div
         class="flex items-end gap-5 border-b dark:border-midnight-100 pb-1 w-full"
