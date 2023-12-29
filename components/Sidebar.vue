@@ -43,7 +43,7 @@
       </ul>
       <NuxtLink
         to="/shipments/new-shipment"
-        class="btn-primary px-5 py-3 mt-8 flex justify-between items-center lg:hidden"
+        class="btn-primary px-5 py-3 mt-8 flex justify-between items-center hidden"
         @click="closeSidebar"
         ><div>New Shipment</div>
         <Icon name="mdi:arrow-right" />

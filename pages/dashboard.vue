@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:px-10 px-5 pb-32">
     <div
-      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5"
+      class="w-full mb-0 lg:flex justify-between items-end sticky top-0 pt-5 pb-5"
     >
       <div
         class="border-b w-full dark:border-midnight-500 pb-1 flex gap-5 text-center items-center justify-between"
@@ -13,13 +13,13 @@
         <div><Icon name="majesticons:search-line" size="1.5rem" /></div>
       </div>
     </div>
-    <div class="flex justify-between text-lg mb-4 items-center">
-      <div class="text-right">
-        <NuxtLink
-          to="/shipments/new-shipment"
-          class="btn-primary inline-block px-4 py-1"
-          >New Shipment</NuxtLink
-        >
+    <div class="flex justify-between text-lg mb-4 items-center w-full">
+      <div class="text-right w-full">
+        <div class="mb-4 text-center">
+          <NuxtLink to="/shipments/new-shipment" class="btn-white block w-full"
+            >New Shipment</NuxtLink
+          >
+        </div>
       </div>
     </div>
   </div>
