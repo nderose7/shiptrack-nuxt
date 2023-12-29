@@ -6,7 +6,11 @@
       :class="{ visible: sidebarVisible }"
     />
     <div class="content" :class="{ 'content-expanded': sidebarVisible }">
-      <div class="swipearea z-50" @click="sidebarVisible = false"></div>
+      <div
+        class="swipearea z-50"
+        v-if="sidebarVisible"
+        @click="sidebarVisible = false"
+      ></div>
       <NuxtPage class="z-10" />
     </div>
   </div>
