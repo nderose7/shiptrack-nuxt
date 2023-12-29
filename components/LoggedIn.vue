@@ -4,9 +4,6 @@
       class="sidebar"
       :isVisible="sidebarVisible"
       :class="{ visible: sidebarVisible }"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
     />
     <div class="content" :class="{ 'content-expanded': sidebarVisible }">
       <div class="swipearea z-50" @click="sidebarVisible = false"></div>
