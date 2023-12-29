@@ -9,8 +9,8 @@
       @touchend="handleTouchEnd"
     />
     <div class="content" :class="{ 'content-expanded': sidebarVisible }">
-      <div class="swipearea" @click="sidebarVisible = false"></div>
-      <NuxtPage />
+      <div class="swipearea z-50" @click="sidebarVisible = false"></div>
+      <NuxtPage class="z-10" />
     </div>
   </div>
 </template>
