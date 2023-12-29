@@ -4,7 +4,7 @@
       class="w-full pb-3 mb-2 flex justify-between items-end sticky top-0 pt-5 dark:bg-black bg-white"
     >
       <div
-        class="flex items-end gap-5 border-b dark:border-midnight-100 pb-1 w-full"
+        class="flex items-end gap-5 border-b dark:border-midnight-500 pb-1 w-full"
       >
         <h1 class="text-2xl">
           <button
@@ -20,6 +20,11 @@
     <div class="">
       <div class="xl:w-1/3">
         <div class="lg:mt-5">
+          <div class="my-4 text-center">
+            <button class="btn-white block w-full">
+              Scan Serial / Barcode
+            </button>
+          </div>
           <Form class="form-control" @submit="getShippingOptions()">
             <div class="form-group">
               <label for="destinationAddress"> Product To Ship </label>
