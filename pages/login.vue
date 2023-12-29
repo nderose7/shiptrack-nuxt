@@ -5,12 +5,12 @@
   >
     <div class="h-screen flex items-center justify-center">
       <div class="xl:w-1/5 lg:w-1/3 min-w-[320px]">
-        <div class="px-8 pb-12 pt-10">
+        <div class="pb-12 pt-10">
           <div class="logo mb-10 px-10 text-4xl text-center">
-            <NuxtLink to="/" class="inline-block">
+            <span class="inline-block">
               <CloudLogo class="w-[48px] mx-auto mb-3" />
               <Logo />
-            </NuxtLink>
+            </span>
           </div>
           <p class="hidden">Login to your Momentum account.</p>
           <div v-if="error">

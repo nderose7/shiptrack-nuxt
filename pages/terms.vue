@@ -7,7 +7,7 @@
     >
       &larr; Back
     </button>
-    <h1>Terms of Use</h1>
+    <h1 class="text-2xl mt-5">Terms of Use</h1>
 
     <h2>1. Introduction</h2>
   </div>
@@ -15,10 +15,14 @@
 
 <style scoped>
 h2 {
-  @apply my-4 mt-8;
+  @apply my-4 mt-8 text-xl;
 }
 </style>
 
 <script setup>
 const router = useRouter();
+
+definePageMeta({
+  layout: "blank",
+});
 </script>

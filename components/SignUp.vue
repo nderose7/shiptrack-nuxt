@@ -5,8 +5,9 @@
     class="vue-form p-5 text-left lg:mx-auto lg:w-full lg:max-w-[500px] lg:rounded-3xl lg:p-10"
   >
     <div class="">
-      <h1 class="mb-2 text-4xl font-bold">Create Account</h1>
-      <p class="mb-3">Create an account and then choose a plan.</p>
+      <h1 class="mb-2 text-4xl font-bold text-center lg:text-left">
+        Create Account
+      </h1>
     </div>
     <div class="mt-5 hidden">
       <a

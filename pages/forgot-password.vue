@@ -3,7 +3,10 @@
     <div class="flex min-h-screen items-center justify-center">
       <form @submit.prevent="onSubmit()" class="max-w-md px-10 py-5 pb-10">
         <div class="logo mt-4 mb-5 px-10 text-4xl mx-auto">
-          <Logo />
+          <span class="inline-block">
+            <CloudLogo class="w-[48px] mx-auto mb-3" />
+            <Logo />
+          </span>
         </div>
         <h1 class="mb-4 text-2xl font-extrabold">Forgot your password?</h1>
         <p class="text-lg">
