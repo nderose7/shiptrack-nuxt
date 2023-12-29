@@ -120,7 +120,7 @@
   <transition name="slide" mode="out-in">
     <div
       v-if="isDrawerOpen"
-      class="drawer lg:dark:bg-midnight-700 lg:bg-slate-200 p-5 px-6 drop-shadow"
+      class="drawer lg:dark:bg-midnight-700 dark:bg-black bg-white lg:bg-slate-200 p-5 px-6 drop-shadow"
     >
       <div class="">
         <div class="lg:flex justify-between">
