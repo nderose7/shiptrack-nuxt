@@ -25,7 +25,7 @@
     <div>
       <div
         v-for="address in processedAddresses"
-        class="dark:bg-midnight-500 my-3 p-5 rounded-lg"
+        class="dark:bg-midnight-500 bg-slate-100 my-3 p-5 rounded-lg"
       >
         <div class="font-bold text-xl">{{ address.name }}</div>
         <div class="my-2">

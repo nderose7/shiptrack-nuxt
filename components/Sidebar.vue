@@ -8,35 +8,35 @@
       </div>
       <ul class="lg:text-lg text-xl logged-in-nav">
         <li>
-          <NuxtLink to="/dashboard"
+          <NuxtLink to="/dashboard" @click="closeSidebar"
             ><Icon name="bx:tachometer" class="icon-style mr-1" />
             Dashboard</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/shipments"
+          <NuxtLink to="/shipments" @click="closeSidebar"
             ><Icon name="bx:send" class="icon-style mr-1" /> Shipments</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/products"
+          <NuxtLink to="/products" @click="closeSidebar"
             ><Icon name="bx:package" class="icon-style mr-1" />
             Products</NuxtLink
           >
         </li>
         <li class="">
-          <NuxtLink to="/addresses"
+          <NuxtLink to="/addresses" @click="closeSidebar"
             ><Icon name="bx:map" class="icon-style mr-1" /> Addresses</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/users"
+          <NuxtLink to="/users" @click="closeSidebar"
             ><Icon name="bx:group" class="icon-style mr-1" /> Users</NuxtLink
           >
         </li>
 
         <li>
-          <NuxtLink to="/settings"
+          <NuxtLink to="/settings" @click="closeSidebar"
             ><Icon name="bx:cog" class="icon-style mr-1" /> Settings</NuxtLink
           >
         </li>
@@ -129,9 +129,7 @@ const props = defineProps({
 });
 
 const closeSidebar = () => {
-  nextTick(() => {
-    sidebarVisible.value = false;
-  });
+  sidebarVisible.value = false;
 };
 
 const fetchUserWithRelations = async () => {
