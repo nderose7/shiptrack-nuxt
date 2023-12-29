@@ -10,6 +10,9 @@
         class="swipearea z-50"
         v-if="sidebarVisible"
         @click="sidebarVisible = false"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
       ></div>
       <NuxtPage class="z-10" />
     </div>
