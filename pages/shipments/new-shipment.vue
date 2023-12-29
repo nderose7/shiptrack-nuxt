@@ -167,7 +167,7 @@
         <div class="overflow-y-scroll h-screen-local pb-48">
           <div
             v-for="shippingOption in filteredShippingOptions"
-            class="p-2 px-3 text-lg bg-white rounded-lg drop-shadow my-2 cursor-pointer hover:bg-slate-100 border dark:bg-midnight-400 dark:border-midnight-200"
+            class="p-2 px-3 text-lg bg-white rounded-lg my-2 cursor-pointer hover:bg-slate-100 border dark:bg-midnight-400 dark:border-midnight-200"
             @click="selectShippingOption(shippingOption)"
             :key="shippingOption.id"
             :class="{ 'selected-option': isSelected(shippingOption) }"

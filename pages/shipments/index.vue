@@ -27,7 +27,7 @@
     <div class="">
       <div
         v-for="shipment in processedShipments"
-        class="dark:bg-midnight-500 bg-slate-100 drop-shadow my-5 p-5 rounded-lg"
+        class="dark:bg-midnight-500 bg-slate-100 my-5 p-5 rounded-lg"
       >
         <NuxtLink :to="`/shipments/${shipment.id}`" class="link">
           <div class="text-2xl font-bold">
