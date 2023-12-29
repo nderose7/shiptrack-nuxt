@@ -5,17 +5,14 @@
       :isVisible="sidebarVisible"
       :class="{ visible: sidebarVisible }"
     />
-    <div
-      class="content"
-      :class="{ 'content-expanded': sidebarVisible }"
-      @touchstart="handleTouchStart"
-      @touchmove="handleTouchMove"
-      @touchend="handleTouchEnd"
-    >
+    <div class="content" :class="{ 'content-expanded': sidebarVisible }">
       <div
         class="swipearea z-50"
         v-if="sidebarVisible"
         @click="sidebarVisible = false"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
       ></div>
       <NuxtPage class="z-10" />
     </div>
