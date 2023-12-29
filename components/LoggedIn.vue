@@ -12,7 +12,7 @@
       <div
         class="swipearea z-50"
         v-if="sidebarVisible"
-        @click="sidebarVisible = false"
+        @click="toggleSidebar"
         @touchstart="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
@@ -24,6 +24,16 @@
 
 <script setup>
 import { sidebarVisible } from "@/composables/state.js";
+
+const toggleSidebar = () => {
+  sidebarVisible.value = !sidebarVisible.value;
+
+  if (sidebarVisible.value) {
+    document.body.classList.add("no-scroll");
+  } else {
+    document.body.classList.remove("no-scroll");
+  }
+};
 
 const touchStartX = ref(0);
 const touchEndX = ref(0);
@@ -40,9 +50,11 @@ const handleTouchEnd = () => {
   if (touchStartX.value < 50 && touchEndX.value > 150) {
     // Swipe Right - Open Sidebar
     sidebarVisible.value = true;
+    document.body.classList.add("no-scroll");
   } else if (touchEndX.value < touchStartX.value && sidebarVisible.value) {
     // Swipe Left - Close Sidebar
     sidebarVisible.value = false;
+    document.body.classList.remove("no-scroll");
   }
 };
 </script>
