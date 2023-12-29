@@ -24,7 +24,7 @@
 
     <div
       v-for="product in processedProducts"
-      class="dark:bg-midnight-500 bg-slate-100 my-3 p-5 rounded-lg"
+      class="dark:bg-midnight-500 bg-white drop-shadow my-3 p-5 rounded-lg"
     >
       <div class="font-bold text-xl">{{ product.name }}</div>
       <div>{{ product.serial }}</div>
