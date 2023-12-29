@@ -2,7 +2,7 @@
   <div class="flex justify-between">
     <ul class="main-nav lg:flex gap-10">
       <NuxtLink to="/" class="font-bold text-3xl lg:mr-10 inline-block py-4">
-        <div class="flex">
+        <div class="flex items-center">
           <CloudLogo class="w-[32px] inline-block mr-2" /> <Logo />
         </div>
       </NuxtLink>
@@ -29,7 +29,7 @@
           ><span class="hidden lg:inline"> Dashboard </span>
           <Icon
             name="mingcute:arrow-right-fill"
-            class="icon-style"
+            class="icon-style text-white"
             size="1.25rem"
         /></NuxtLink>
       </li>

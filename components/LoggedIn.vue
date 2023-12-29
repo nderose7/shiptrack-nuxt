@@ -4,11 +4,7 @@
     class="md:flex h-full min-h-screen"
     :class="{ 'overflow-hidden': sidebarVisible }"
   >
-    <Sidebar
-      class="sidebar"
-      :isVisible="sidebarVisible"
-      :class="{ visible: sidebarVisible }"
-    />
+    <Sidebar class="sidebar" :class="{ visible: sidebarVisible }" />
     <div
       class="content h-full"
       :class="{ 'content-expanded overflow-hidden': sidebarVisible }"
@@ -58,7 +54,6 @@ const handleTouchEnd = () => {
   top: 0;
   height: 100%;
   transition: transform 0.3s ease;
-
   @apply max-h-screen;
 }
 
