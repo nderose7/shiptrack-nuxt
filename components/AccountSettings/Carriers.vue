@@ -5,7 +5,7 @@
       <div
         v-if="carriers?.length"
         v-for="carrier in carriers"
-        class="p-4 bg-white dark:bg-midnight-500 rounded-lg drop-shadow dark:border dark:border-midnight-100 my-2"
+        class="p-4 bg-white dark:bg-midnight-500 rounded-lg drop-shadow dark:border dark:border-midnight-100 my-2 relative"
       >
         <div class="text-xl font-bold">{{ carrier.name }}</div>
         <div class="text-base">{{ carrier.accountId }}</div>
