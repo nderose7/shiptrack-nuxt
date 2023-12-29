@@ -1,6 +1,6 @@
 <template>
   <div
-    class="bg-white dark:bg-midnight-200 lg:dark:bg-midnight-900 h-full min-h-screen lg:sticky top-0 w-[330px] max-h-screen border-r dark:border-midnight-300"
+    class="bg-white dark:bg-black lg:dark:bg-midnight-900 lg:bg-slate-200 h-full min-h-screen lg:sticky top-0 w-[330px] max-h-screen border-r dark:border-midnight-300"
   >
     <div class="px-7 py-5">
       <div class="text-2xl mb-5 flex gap-1 items-center">

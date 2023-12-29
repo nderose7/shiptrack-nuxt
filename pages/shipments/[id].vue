@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:px-10 px-5 min-h-screen pb-32">
     <div
-      class="w-full pb-3 mb-5 flex justify-between items-end sticky top-0 pt-5 dark:bg-midnight-200 bg-white z-50"
+      class="w-full pb-3 mb-5 flex justify-between items-end sticky top-0 pt-5 dark:bg-black bg-white z-50"
     >
       <div
         class="flex items-end gap-5 border-b dark:border-midnight-100 pb-1 w-full"
@@ -23,7 +23,9 @@
           <div class="">
             <h1 class="text-3xl mb-1">{{ shipment?.product?.name }}</h1>
             <p>{{ shipment?.product?.serial }}</p>
-            <div class="p-1 px-3 mb-6 dark:bg-midnight-500 w-fit rounded-lg">
+            <div
+              class="p-1 px-3 mb-6 dark:bg-midnight-500 bg-slate-100 w-fit rounded-lg"
+            >
               <b>Status: </b>
               <span v-if="shipmentDetails?.status === 'unknown'">
                 {{ shipment?.status }}

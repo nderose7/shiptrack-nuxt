@@ -1,10 +1,10 @@
 <template>
   <div class="w-full lg:px-10 px-5 pb-32">
     <div
-      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200"
+      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-black bg-white"
     >
       <div
-        class="border-b w-full dark:border-midnight-100 pb-1 flex gap-5 text-center items-center justify-between"
+        class="border-b w-full dark:border-midnight-500 pb-1 flex gap-5 text-center items-center justify-between"
       >
         <button class="lg:hidden" @click="toggleSidebar">
           <Icon name="majesticons:menu-alt-line" size="1.5rem" />

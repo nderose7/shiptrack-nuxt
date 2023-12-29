@@ -9,6 +9,9 @@
     color: #2b2d32;
     @apply bg-white
   }
+  .dark body {
+    @apply bg-black text-slate-300
+  }
   p {
     @apply mb-4 text-lg
   }
