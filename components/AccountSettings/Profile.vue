@@ -37,7 +37,7 @@
       <div class="mb-6">
         <label for="email" class="block font-bold">Your Email</label>
         <div
-          class="rounded-xl bg-slate-200 px-5 pt-5 pb-2 dark:bg-midnight-400"
+          class="rounded-xl bg-slate-100 px-5 pt-5 pb-2 dark:bg-midnight-400"
         >
           <div class="mb-2 text-lg">
             <div class="relative">
@@ -97,7 +97,7 @@
         >
 
         <div
-          class="rounded-xl bg-slate-200 px-5 pt-5 pb-2 dark:bg-midnight-400"
+          class="rounded-xl bg-slate-100 px-5 pt-5 pb-2 dark:bg-midnight-400"
         >
           <div class="toggle-container">
             <div
@@ -127,7 +127,7 @@
 
       <label for="avatar" class="block font-bold">Avatar</label>
       <div
-        class="mb-5 rounded-xl bg-slate-200 px-8 pt-8 pb-2 dark:bg-midnight-400"
+        class="mb-5 rounded-xl bg-slate-100 px-8 pt-8 pb-2 dark:bg-midnight-400"
       >
         <div class="gap-5 md:flex">
           <div
