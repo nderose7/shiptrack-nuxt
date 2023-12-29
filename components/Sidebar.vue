@@ -131,6 +131,11 @@ const props = defineProps({
 
 const closeSidebar = () => {
   sidebarVisible.value = false;
+  if (sidebarVisible.value) {
+    document.body.classList.add("no-scroll");
+  } else {
+    document.body.classList.remove("no-scroll");
+  }
 };
 
 const fetchUserWithRelations = async () => {
