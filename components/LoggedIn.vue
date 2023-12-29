@@ -61,7 +61,7 @@ const handleTouchEnd = () => {
 }
 
 .content-expanded {
-  margin-left: 85%; /* Shift content to the right */
+  margin-left: 330px; /* Shift content to the right */
 }
 
 /* Mobile styles - hide sidebar initially */
@@ -86,6 +86,7 @@ const handleTouchEnd = () => {
 }
 
 .swipearea {
-  @apply absolute top-[56px] min-h-screen w-[50px];
+  @apply absolute top-[56px] min-h-screen right-0;
+  width: calc(100% - 320px);
 }
 </style>
