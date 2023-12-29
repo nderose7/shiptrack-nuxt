@@ -13,8 +13,8 @@ definePageMeta({
 
 <template>
   <div class="dark:bg-midnight-800">
-    <div class="logo absolute pl-5 pt-2 text-2xl">
-      <NuxtLink to="/" class="flex">
+    <div class="logo absolute pl-5 pt-3 text-2xl">
+      <NuxtLink to="/" class="flex items-center">
         <CloudLogo class="w-[32px] inline-block mr-1" /> <Logo />
       </NuxtLink>
     </div>
