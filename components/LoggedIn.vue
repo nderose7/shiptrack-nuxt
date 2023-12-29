@@ -2,7 +2,7 @@
   <div
     id="LoggedIn"
     class="md:flex h-full min-h-screen"
-    :class="{ 'overflow-y-hidden': sidebarVisible }"
+    :class="{ 'overflow-hidden': sidebarVisible }"
   >
     <Sidebar
       class="sidebar"
