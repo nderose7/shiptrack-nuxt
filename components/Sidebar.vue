@@ -103,10 +103,11 @@
             v-if="user.admin"
             class="text-sm relative top-[-5px] text-slate-500"
           >
-            Admin <span class="text-midnight-100">|</span> <CompanyName />
+            Admin <span class="dark:text-midnight-100 text-slate-300">|</span>
+            <CompanyName />
           </span>
           <span v-else>
-            <span class="text-midnight-100">|</span> <CompanyName />
+            <CompanyName />
           </span>
         </div>
       </div>
