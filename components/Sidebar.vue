@@ -8,35 +8,35 @@
       </div>
       <ul class="lg:text-lg text-xl logged-in-nav">
         <li>
-          <NuxtLink to="/dashboard" @click.native="closeSidebar"
+          <NuxtLink to="/dashboard"
             ><Icon name="bx:tachometer" class="icon-style mr-1" />
             Dashboard</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/shipments" @click.native="closeSidebar"
+          <NuxtLink to="/shipments"
             ><Icon name="bx:send" class="icon-style mr-1" /> Shipments</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/products" @click.native="closeSidebar"
+          <NuxtLink to="/products"
             ><Icon name="bx:package" class="icon-style mr-1" />
             Products</NuxtLink
           >
         </li>
         <li class="">
-          <NuxtLink to="/addresses" @click.native="closeSidebar"
+          <NuxtLink to="/addresses"
             ><Icon name="bx:map" class="icon-style mr-1" /> Addresses</NuxtLink
           >
         </li>
         <li>
-          <NuxtLink to="/users" @click.native="closeSidebar"
+          <NuxtLink to="/users"
             ><Icon name="bx:group" class="icon-style mr-1" /> Users</NuxtLink
           >
         </li>
 
         <li>
-          <NuxtLink to="/settings" @click.native="closeSidebar"
+          <NuxtLink to="/settings"
             ><Icon name="bx:cog" class="icon-style mr-1" /> Settings</NuxtLink
           >
         </li>
@@ -67,7 +67,7 @@
         </div>
         <div class="mb-2 border-b pb-4 dark:border-gray-700"></div>
         <NuxtLink
-          @click.native="(showUserMenu = !showUserMenu), closeSidebar()"
+          @click="(showUserMenu = !showUserMenu), closeSidebar()"
           to="/settings/profile"
           class="mt-0 block py-1"
         >
@@ -129,7 +129,9 @@ const props = defineProps({
 });
 
 const closeSidebar = () => {
-  sidebarVisible.value = false;
+  nextTick(() => {
+    sidebarVisible.value = false;
+  });
 };
 
 const fetchUserWithRelations = async () => {
