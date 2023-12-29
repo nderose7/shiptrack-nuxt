@@ -1,23 +1,19 @@
 <template>
-  <div
-    id="LoggedIn"
-    class="md:flex h-full min-h-screen"
-    @touchstart="handleTouchStart"
-    @touchmove="handleTouchMove"
-    @touchend="handleTouchEnd"
-  >
+  <div id="LoggedIn" class="md:flex h-full min-h-screen">
     <Sidebar
       class="sidebar"
       :isVisible="sidebarVisible"
       :class="{ visible: sidebarVisible }"
     />
     <div class="content" :class="{ 'content-expanded': sidebarVisible }">
-      <NuxtPage
+      <div
+        v-if="sidebarVisible"
+        class="swipe-area z-10"
         @touchstart="handleTouchStart"
         @touchmove="handleTouchMove"
         @touchend="handleTouchEnd"
-        class="min-h-screen"
-      />
+      ></div>
+      <NuxtPage class="z-20" />
     </div>
   </div>
 </template>
@@ -110,8 +106,9 @@ const handleTouchEnd = () => {
 
 /* Style for the area that detects swipe gestures */
 .swipe-area {
-  position: relative;
-  left: 0;
+  position: absolute;
+  right: top;
+  top: 60px;
   width: 50px; /* Width of the swipe-sensitive area */
   height: 100vh;
 }

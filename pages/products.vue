@@ -24,7 +24,7 @@
 
     <div
       v-for="product in processedProducts"
-      class="dark:bg-midnight-500 my-3 p-5 rounded-lg"
+      class="dark:bg-midnight-500 bg-slate-100 my-3 p-5 rounded-lg"
     >
       <div class="font-bold text-xl">{{ product.name }}</div>
       <div>{{ product.serial }}</div>
@@ -67,6 +67,7 @@
 </style>
 
 <script setup>
+import { sidebarVisible } from "@/composables/state.js";
 import "element-plus/theme-chalk/dark/css-vars.css";
 import { zonedTimeToUtc, utcToZonedTime, format } from "date-fns-tz";
 import { truncateString } from "~/utils/truncateString.js";

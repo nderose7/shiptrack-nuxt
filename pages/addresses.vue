@@ -82,6 +82,7 @@
 </style>
 
 <script setup>
+import { sidebarVisible } from "@/composables/state.js";
 import "element-plus/theme-chalk/dark/css-vars.css";
 import { zonedTimeToUtc, utcToZonedTime, format } from "date-fns-tz";
 import { truncateString } from "~/utils/truncateString.js";

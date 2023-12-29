@@ -25,6 +25,7 @@
 </template>
 
 <script setup>
+import { sidebarVisible } from "@/composables/state.js";
 const toggleSidebar = () => {
   sidebarVisible.value = !sidebarVisible.value;
 };

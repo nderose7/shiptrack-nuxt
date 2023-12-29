@@ -115,6 +115,7 @@
 </template>
 
 <script setup>
+import { sidebarVisible } from "@/composables/state.js";
 const user = useStrapiUser();
 const token = useStrapiToken();
 const userData = ref(null);
