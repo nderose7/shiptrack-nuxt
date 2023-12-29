@@ -1,5 +1,5 @@
 <template>
-  <div class="max-h-screen">
+  <div class="">
     <LoggedIn />
   </div>
 </template>

@@ -1,11 +1,18 @@
 <template>
-  <div id="LoggedIn" class="md:flex h-full min-h-screen overflow-x-hidden">
+  <div
+    id="LoggedIn"
+    class="md:flex h-full min-h-screen"
+    :class="{ 'overflow-y-hidden': sidebarVisible }"
+  >
     <Sidebar
       class="sidebar"
       :isVisible="sidebarVisible"
       :class="{ visible: sidebarVisible }"
     />
-    <div class="content" :class="{ 'content-expanded': sidebarVisible }">
+    <div
+      class="content h-full"
+      :class="{ 'content-expanded overflow-hidden': sidebarVisible }"
+    >
       <div
         class="swipearea z-50"
         v-if="sidebarVisible"
@@ -51,7 +58,8 @@ const handleTouchEnd = () => {
   top: 0;
   height: 100%;
   transition: transform 0.3s ease;
-  overflow: hidden;
+
+  @apply max-h-screen;
 }
 
 .sidebar.visible {

@@ -1,7 +1,5 @@
 <template>
-  <div class="w-full">
-    <NuxtPage />
-  </div>
+  <NuxtPage />
 </template>
 
 <script setup>

@@ -47,6 +47,12 @@ const tableHeaders = ref([]);
 
 const toggleSidebar = () => {
   sidebarVisible.value = !sidebarVisible.value;
+
+  if (sidebarVisible.value) {
+    document.body.classList.add("no-scroll");
+  } else {
+    document.body.classList.remove("no-scroll");
+  }
 };
 
 //const { data: products } = await find("products");

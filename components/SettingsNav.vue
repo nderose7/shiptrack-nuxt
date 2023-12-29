@@ -1,7 +1,7 @@
 <template>
   <div class="w-full">
     <div
-      class="w-full lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200"
+      class="w-full lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200 z-50"
     >
       <div
         class="border-b w-full dark:border-midnight-100 pb-1 flex gap-5 text-center items-center justify-between"
@@ -28,6 +28,12 @@
 import { sidebarVisible } from "@/composables/state.js";
 const toggleSidebar = () => {
   sidebarVisible.value = !sidebarVisible.value;
+
+  if (sidebarVisible.value) {
+    document.body.classList.add("no-scroll");
+  } else {
+    document.body.classList.remove("no-scroll");
+  }
 };
 </script>
 

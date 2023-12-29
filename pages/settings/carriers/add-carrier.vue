@@ -1,9 +1,11 @@
 <template>
-  <div class="mt-5 w-full">
+  <div class="w-full pb-32 h-full">
     <div
-      class="w-full border-b dark:border-midnight-100 pb-1 mb-5 flex justify-between items-end"
+      class="w-full mb-5 lg:flex justify-between items-end sticky top-0 pt-5 pb-5 dark:bg-midnight-200 z-50"
     >
-      <div class="flex items-end gap-5">
+      <div
+        class="border-b w-full dark:border-midnight-100 pb-1 flex gap-5 text-center items-center justify-between"
+      >
         <h1 class="text-2xl">
           <button
             type="button"
@@ -14,13 +16,6 @@
           >Add Carrier
         </h1>
       </div>
-      <span class="font-medium text-lg"
-        ><Icon
-          name="bx:building"
-          class="mr-1 relative top-[-1px]"
-          size="1rem" />
-        <CompanyName
-      /></span>
     </div>
     <div class="">
       <AccountSettingsAddCarrier />
