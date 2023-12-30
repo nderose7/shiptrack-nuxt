@@ -21,7 +21,7 @@
       <div class="xl:w-1/3">
         <div class="lg:mt-5">
           <div class="my-4 text-center">
-            <button class="btn-white block w-full">
+            <button @click="openScanner" class="btn-white block w-full">
               Scan Serial / Barcode
             </button>
           </div>
@@ -561,5 +561,9 @@ const createShipment = async () => {
   } catch (error) {
     console.error(error);
   }
+};
+
+const openScanner = () => {
+  window.location.href = "scanner://scan";
 };
 </script>
