@@ -570,6 +570,7 @@ const createShipment = async () => {
 const openScanner = () => {
   openingScanner.value = true;
   window.location.href = "scanner://scan";
+  openingScanner.value = false;
   //locationTest.value = true;
 };
 </script>
