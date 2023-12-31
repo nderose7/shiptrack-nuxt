@@ -1,8 +1,15 @@
 <template>
-  <div class="h-screen px-4 text-center">
-    <div class="flex min-h-screen items-center justify-center">
-      <form @submit.prevent="onSubmit()" class="max-w-md px-10 py-5 pb-10">
-        <div class="logo mt-4 mb-5 px-10 text-4xl mx-auto">
+  <div class="h-screen">
+    <button
+      type="button"
+      @click.prevent="$router.back()"
+      class="mb-0 mt-0 mr-1 p-3"
+    >
+      <Icon name="mdi:arrow-left" class="icon-style" size="2rem" />
+    </button>
+    <div class="flex min-h-screen justify-center text-center">
+      <form @submit.prevent="onSubmit()" class="max-w-md px-10 pt-0 pb-10">
+        <div class="logo mb-10 px-10 text-4xl mx-auto">
           <span class="inline-block">
             <CloudLogo class="w-[48px] mx-auto mb-3" />
             <Logo />

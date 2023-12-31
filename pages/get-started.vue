@@ -1,5 +1,12 @@
 <template>
   <div class="min-h-screen lg:mx-auto">
+    <button
+      type="button"
+      @click.prevent="$router.back()"
+      class="mb-0 mt-0 mr-1 p-3"
+    >
+      <Icon name="mdi:arrow-left" class="icon-style" size="2rem" />
+    </button>
     <div class="grid-cols-2 items-center lg:grid lg:min-h-screen">
       <div class="py-4 lg:min-h-screen lg:px-8 lg:pt-6 lg:pb-0">
         <div

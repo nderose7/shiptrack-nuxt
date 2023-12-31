@@ -1,12 +1,12 @@
 <template>
+  <button
+    type="button"
+    @click.prevent="$router.back()"
+    class="mb-0 mt-0 mr-1 p-3"
+  >
+    <Icon name="mdi:arrow-left" class="icon-style" size="2rem" />
+  </button>
   <div class="px-5 xl:w-1/2 mx-auto page-style mt-5 pb-48">
-    <button
-      type="button"
-      @click.prevent="$router.back()"
-      class="mb-4 btn-gray btn-sm"
-    >
-      &larr; Back
-    </button>
     <h1 class="text-2xl mt-5">Privacy Agreement</h1>
   </div>
 </template>
