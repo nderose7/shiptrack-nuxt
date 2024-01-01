@@ -3,7 +3,7 @@
     <button
       type="button"
       @click.prevent="$router.back()"
-      class="mb-0 mt-0 mr-1 p-3"
+      class="mb-0 mt-0 mr-1 p-3 hidden lg:inline-block"
     >
       <Icon name="mdi:arrow-left" class="icon-style" size="2rem" />
     </button>
