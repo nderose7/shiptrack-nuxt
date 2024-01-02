@@ -156,7 +156,9 @@ const getColumnWidth = (key) => {
 
 onMounted(async () => {
   try {
-    const response = await find("shipments");
+    const response = await find("shipments", {
+      sort: { id: "desc" },
+    });
     rawData.value = response.data;
 
     // Process data for the table
