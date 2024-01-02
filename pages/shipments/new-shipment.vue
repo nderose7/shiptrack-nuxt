@@ -23,7 +23,7 @@
           <div class="my-4 text-center">
             <button @click="openScanner" class="btn-white block w-full">
               <span v-if="openingScanner"> Opening scanner... </span>
-              <div v-else>Scan Serial / Barcode</div>
+              <div v-else>Scan Serial Number</div>
             </button>
           </div>
           <Form class="form-control" @submit="getShippingOptions()">
@@ -568,9 +568,6 @@ const createShipment = async () => {
 //const locationTest = ref("");
 
 const openScanner = () => {
-  openingScanner.value = true;
-  //window.location.href = "scanner://scan";
-  openingScanner.value = false;
-  //locationTest.value = true;
+  window.location.href = "scanner://scan";
 };
 </script>
