@@ -49,10 +49,10 @@
         <Icon name="mdi:arrow-right" />
       </NuxtLink>
     </div>
-    <div class="fixed bottom-5 px-5 lg:w-[260px] w-[260px]">
+    <div class="fixed bottom-5 px-5 lg:w-[300px] w-[300px]">
       <div
         v-if="showUserMenu"
-        class="px-3 py-2 pt-3 bg-slate-100 dark:bg-midnight-500 font-medium rounded-t-lg border-t border-l border-r dark:border-midnight-200 slideUpAnimation z-30 relative"
+        class="px-3 py-2 pt-3 bg-slate-100 dark:bg-midnight-500 font-medium rounded-t-lg border-t border-l border-r dark:border-midnight-200 slideUpAnimation z-30 relative text-lg"
       >
         <label class=""
           ><Icon
@@ -81,9 +81,9 @@
         </a>
       </div>
       <div
-        class="px-3 font-semibold border bg-slate-100 dark:bg-midnight-500 dark:border-midnight-200 flex gap-2 items-center w-full cursor-pointer z-40 relative"
+        class="px-3 font-semibold border bg-slate-100 dark:bg-midnight-500 dark:border-midnight-200 flex gap-2 items-center w-full cursor-pointer z-40 relative text-lg"
         :class="{
-          'py-1': user.admin,
+          'py-2': user.admin,
           'py-3': !user.admin,
           'rounded-b-lg': showUserMenu,
           'rounded-lg': !showUserMenu,
