@@ -34,9 +34,13 @@
                   name="product"
                   id="product"
                   type="select"
-                  v-model="product"
+                  v-model="selectedProduct"
                 >
-                  <option v-for="product in products" :value="product">
+                  <option
+                    v-for="product in products"
+                    :value="product"
+                    :key="product.id"
+                  >
                     {{ product.name }}: {{ product.serial }}
                   </option>
                 </select>
@@ -568,6 +572,22 @@ const createShipment = async () => {
 //const locationTest = ref("");
 
 const openScanner = () => {
+  console.log("Opening scanner...");
   window.location.href = "scanner://scan";
+};
+
+const productFound = ref("No data");
+const selectedProduct = ref(null); // Reactive property for the selected product
+
+window.receiveDataFromNative = async function (productId) {
+  try {
+    const productData = await findOne("products", productId);
+    const foundProduct = products.value.find(
+      (product) => product.id === productData.data.id
+    );
+    selectedProduct.value = foundProduct;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+  }
 };
 </script>
