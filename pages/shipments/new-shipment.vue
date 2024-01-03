@@ -93,7 +93,7 @@
                   v-model="selectedDestinationAddress"
                 >
                   <option :value="address" v-for="address in addresses">
-                    {{ address.name }}:<span
+                    {{ address.name }}:&nbsp;<span
                       v-if="address.organization !== null"
                     >
                       {{ address.organization }}
