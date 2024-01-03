@@ -118,9 +118,31 @@
                   <PrintImage
                     :imageUrl="shipmentDetails.postage_label.label_url"
                   />
-                  <button type="button" class="btn-white print:hidden">
+                  <button
+                    @click="showEmailRecipient = !showEmailRecipient"
+                    type="button"
+                    class="btn-white print:hidden"
+                  >
                     Email Label
                   </button>
+                </div>
+                <div v-show="showEmailRecipient" class="mt-5 form-control">
+                  <label class="block font-bold mb-2" for="emailRecipient"
+                    >Email Recipient</label
+                  >
+                  <input
+                    name="emailRecipient"
+                    id="emailRecipient"
+                    type="email"
+                    v-model="emailRecipient"
+                  />
+                  <button
+                    @click="sendEmail"
+                    class="btn-primary inline-block mt-2"
+                  >
+                    Send
+                  </button>
+                  {{ emailRecipient }}
                 </div>
               </div>
             </div>
@@ -380,4 +402,33 @@ onMounted(async () => {
   await fetchShipmentDetails();
   pageLoading.value = false;
 });
+
+const emailRecipient = ref("");
+const showEmailRecipient = ref(false);
+
+const sendEmail = async () => {
+  try {
+    console.log("To: ", emailRecipient.value);
+    const response = await fetch(`${strapiURL}/api/email/send`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token.value}`,
+      },
+      body: JSON.stringify({
+        recipient: emailRecipient.value,
+        imageUrl: shipmentDetails.value.postage_label.label_url,
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      console.log("Email sent:", result);
+    } else {
+      console.error("Email sending failed:", result);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
 </script>
