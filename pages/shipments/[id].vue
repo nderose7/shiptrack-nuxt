@@ -1,7 +1,7 @@
 <template>
   <div class="w-full lg:px-10 px-5 min-h-screen pb-32">
     <div
-      class="w-full pb-3 mb-5 flex justify-between items-end sticky top-0 pt-5 dark:bg-black bg-white z-50"
+      class="w-full pb-3 mb-5 flex justify-between items-end sticky top-0 pt-5 dark:bg-black bg-white z-50 print:hidden"
     >
       <div
         class="flex items-end gap-5 border-b dark:border-midnight-100 pb-1 w-full"
@@ -21,90 +21,106 @@
       <div class="">
         <div class="lg:flex items-start justify-between">
           <div class="">
-            <h1 class="text-3xl mb-1">{{ shipment?.product?.name }}</h1>
-            <p>{{ shipment?.product?.serial }}</p>
-            <div
-              class="p-1 px-3 mb-6 dark:bg-midnight-500 bg-slate-100 w-fit rounded-lg"
-            >
-              <b>Status: </b>
-              <span v-if="shipmentDetails?.status === 'unknown'">
-                {{ shipment?.status }}
-              </span>
-              <span
-                v-if="
-                  shipmentDetails?.status &&
-                  shipmentDetails?.status !== 'unknown'
-                "
+            <div class="print:hidden">
+              <h1 class="text-3xl mb-1">{{ shipment?.product?.name }}</h1>
+              <p>{{ shipment?.product?.serial }}</p>
+              <div
+                class="p-1 px-3 mb-6 dark:bg-midnight-500 bg-slate-100 w-fit rounded-lg"
               >
-                {{ snakeCaseToTitleCase(shipmentDetails?.status) }}
-              </span>
+                <b>Status: </b>
+                <span v-if="shipmentDetails?.status === 'unknown'">
+                  {{ shipment?.status }}
+                </span>
+                <span
+                  v-if="
+                    shipmentDetails?.status &&
+                    shipmentDetails?.status !== 'unknown'
+                  "
+                >
+                  {{ snakeCaseToTitleCase(shipmentDetails?.status) }}
+                </span>
+              </div>
             </div>
-            <div>
+            <div class="print:hidden">
               <div class="text-base font-bold text-slate-500 mb-1">FROM</div>
               <b>{{ shipment?.fromName }}</b
               ><br />
               {{ shipment?.originAddress }}
             </div>
             <div>
-              <div class="mt-4">
-                <div class="text-base font-bold text-slate-500 mb-1">TO</div>
-                <b>{{ shipment?.toName }}</b
-                ><br />
-                {{ shipment?.destinationAddress }}
-              </div>
-              <div class="mt-4">
-                <div class="text-base font-bold text-slate-500 mb-1">
-                  DETAILS
+              <div class="print:hidden">
+                <div class="mt-4">
+                  <div class="text-base font-bold text-slate-500 mb-1">TO</div>
+                  <b>{{ shipment?.toName }}</b
+                  ><br />
+                  {{ shipment?.destinationAddress }}
                 </div>
-                <ul>
-                  <li><b>Carrier: </b> {{ shipment?.carrierName }}</li>
-                  <li>
-                    <b>Service: </b>
-                    {{ addSpacesToServiceName(shipment?.carrierService) }}
-                  </li>
-                  <li>
-                    <b>Estimated Delivery: </b>
-                    {{ calculateDeliveryDate(shipment?.deliveryDays) }}
-                  </li>
-                </ul>
-              </div>
-              <div class="mt-4">
-                <div class="text-base font-bold text-slate-500 mb-1">COST</div>
-                <b>Rate: </b> ${{ shipment?.cost }}
+                <div class="mt-4">
+                  <div class="text-base font-bold text-slate-500 mb-1">
+                    DETAILS
+                  </div>
+                  <ul>
+                    <li><b>Carrier: </b> {{ shipment?.carrierName }}</li>
+                    <li>
+                      <b>Service: </b>
+                      {{ addSpacesToServiceName(shipment?.carrierService) }}
+                    </li>
+                    <li>
+                      <b>Estimated Delivery: </b>
+                      {{ calculateDeliveryDate(shipment?.deliveryDays) }}
+                    </li>
+                  </ul>
+                </div>
+                <div class="mt-4">
+                  <div class="text-base font-bold text-slate-500 mb-1">
+                    COST
+                  </div>
+                  <b>Rate: </b> ${{ shipment?.cost }}
+                </div>
               </div>
               <div v-if="shipmentDetails?.tracker" class="mt-4">
-                <div class="text-base font-bold text-slate-500 mb-1">
-                  TRACKING
-                </div>
+                <div class="print:hidden">
+                  <div class="text-base font-bold text-slate-500 mb-1">
+                    TRACKING
+                  </div>
 
-                <div>
-                  <b>{{ shipmentDetails?.tracker?.carrier }} Tracking Code: </b>
-                  <NuxtLink
-                    class="link"
-                    :to="`https://wwwapps.ups.com/tracking/tracking.cgi?tracknum=${shipmentDetails?.tracker?.tracking_code}`"
-                    >{{ shipmentDetails?.tracker?.tracking_code }}
-                  </NuxtLink>
-                </div>
+                  <div>
+                    <b
+                      >{{ shipmentDetails?.tracker?.carrier }} Tracking Code:
+                    </b>
+                    <NuxtLink
+                      class="link"
+                      :to="`https://wwwapps.ups.com/tracking/tracking.cgi?tracknum=${shipmentDetails?.tracker?.tracking_code}`"
+                      >{{ shipmentDetails?.tracker?.tracking_code }}
+                    </NuxtLink>
+                  </div>
 
-                <div>
-                  <b>Status: </b
-                  >{{ snakeCaseToTitleCase(shipmentDetails?.tracker?.status) }}
-                </div>
-                <div>
-                  <b>Details: </b
-                  >{{
-                    snakeCaseToTitleCase(
-                      shipmentDetails?.tracker?.status_detail
-                    )
-                  }}
-                </div>
-                <div>
-                  <b>Last Updated: </b
-                  >{{ formatDateTime(shipmentDetails?.tracker?.updated_at) }}
+                  <div>
+                    <b>Status: </b
+                    >{{
+                      snakeCaseToTitleCase(shipmentDetails?.tracker?.status)
+                    }}
+                  </div>
+                  <div>
+                    <b>Details: </b
+                    >{{
+                      snakeCaseToTitleCase(
+                        shipmentDetails?.tracker?.status_detail
+                      )
+                    }}
+                  </div>
+                  <div>
+                    <b>Last Updated: </b
+                    >{{ formatDateTime(shipmentDetails?.tracker?.updated_at) }}
+                  </div>
                 </div>
                 <div class="flex gap-2 mt-8">
-                  <button type="button" class="btn-white">Print Label</button>
-                  <button type="button" class="btn-white">Email Label</button>
+                  <PrintImage
+                    :imageUrl="shipmentDetails.postage_label.label_url"
+                  />
+                  <button type="button" class="btn-white print:hidden">
+                    Email Label
+                  </button>
                 </div>
               </div>
             </div>
@@ -121,7 +137,10 @@
               </button>
             </div>
           </div>
-          <div v-if="shipmentDetails?.tracker" class="mt-10 mb-20 lg:mt-0">
+          <div
+            v-if="shipmentDetails?.tracker"
+            class="mt-10 mb-20 lg:mt-0 print:hidden"
+          >
             <div class="tracking-container">
               <h2 class="text-2xl mb-3">Tracking</h2>
               <div class="event-content">
