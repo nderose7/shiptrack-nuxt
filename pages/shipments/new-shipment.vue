@@ -443,10 +443,10 @@ const getShippingOptions = async () => {
             companyDataValue.value.street1 + " " + companyDataValue.value.route,
         },
         parcel: {
-          length: product.value.length,
-          width: product.value.width,
-          height: product.value.height,
-          weight: product.value.weight,
+          length: selectedProduct.value.length,
+          width: selectedProduct.value.width,
+          height: selectedProduct.value.height,
+          weight: selectedProduct.value.weight,
         },
       }),
     });
@@ -525,7 +525,7 @@ const createShipment = async () => {
   try {
     const shipment = await create("shipments", {
       product: {
-        connect: [product.value.id],
+        connect: [selectedProduct.value.id],
       },
       company: {
         connect: [companyId.value],
@@ -552,10 +552,10 @@ const createShipment = async () => {
       fromZip: fromZip.value,
       fromState: fromState.value,
       fromStreet1: fromStreet1.value,
-      length: product.value.length,
-      width: product.value.width,
-      height: product.value.height,
-      weight: product.value.weight,
+      length: selectedProduct.value.length,
+      width: selectedProduct.value.width,
+      height: selectedProduct.value.height,
+      weight: selectedProduct.value.weight,
       shippingOption: selectedShippingOption.value.id,
       cost: selectedShippingOption.value.rate,
       status: "In Progress",
@@ -570,15 +570,12 @@ const createShipment = async () => {
   }
 };
 
-//const locationTest = ref("");
-
 const openScanner = () => {
   console.log("Opening scanner...");
   window.location.href = "scanner://scan";
 };
 
-const productFound = ref("No data");
-const selectedProduct = ref(null); // Reactive property for the selected product
+const selectedProduct = ref(null);
 
 window.receiveDataFromNative = async function (productId) {
   try {
