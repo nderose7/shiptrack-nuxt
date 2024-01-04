@@ -69,5 +69,6 @@ onMounted(() => {
 
 definePageMeta({
   layout: "loggedin",
+  middleware: ["auth"],
 });
 </script>

@@ -7,6 +7,6 @@
 <script setup>
 definePageMeta({
   layout: "loggedin",
-  middelware: "auth",
+  middleware: ["auth"],
 });
 </script>

@@ -108,7 +108,7 @@
             >
             <CompanyName />
           </span>
-          <span v-else>
+          <span v-else class="text-sm">
             <CompanyName />
           </span>
         </div>
