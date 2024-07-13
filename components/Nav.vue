@@ -25,7 +25,7 @@
       <li>
         <NuxtLink
           to="/dashboard"
-          class="bg-blue-500 p-3 px-5 w-[32px] h-[32px] rounded-full"
+          class="bg-blue-500 p-3 px-5 w-[32px] h-[32px] rounded-full text-white"
           ><span class="hidden lg:inline"> Dashboard </span>
           <Icon
             name="mingcute:arrow-right-fill"
